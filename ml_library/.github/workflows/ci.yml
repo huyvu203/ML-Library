@@ -48,9 +48,11 @@ jobs:
       run: poetry run pytest --cov=ml_library --cov-report=xml --cov-report=term
       
     - name: Check coverage threshold
+      id: check_coverage
       run: |
         COVERAGE=$(poetry run coverage report | grep TOTAL | awk '{print $NF}' | sed 's/%//')
         echo "Test coverage: $COVERAGE%"
+        echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
         if (( $(echo "$COVERAGE < 85" | bc -l) )); then
           echo "Coverage below threshold of 85%"
           exit 1
@@ -61,3 +63,9 @@ jobs:
       with:
         file: ./coverage.xml
         fail_ci_if_error: false
+        
+    - name: Publish test summary
+      if: ${{ always() }}
+      run: |
+        echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Coverage: ${{ steps.check_coverage.outputs.coverage }}%" >> $GITHUB_STEP_SUMMARY
