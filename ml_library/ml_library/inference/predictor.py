@@ -1,6 +1,8 @@
 """Predictor implementation for making model predictions."""
 
+import pickle
 from typing import Any, Dict, List, Optional, Union
+from pathlib import Path
 
 import numpy as np
 
@@ -129,3 +131,74 @@ class Predictor:
             }
             
         return predictions
+    
+    def save_predictions(self, predictions: Union[np.ndarray, Dict[str, np.ndarray]], file_path: Union[str, Path]) -> None:
+        """Save predictions to a file.
+        
+        Args:
+            predictions: Predictions to save, either a numpy array or a dict with predictions and probabilities
+            file_path: Path where predictions will be saved
+        """
+        file_path = Path(file_path)
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        logger.info(f"Saving predictions to {file_path}")
+        
+        # Always use numpy save with allow_pickle for consistency
+        np.save(file_path, predictions, allow_pickle=True)
+    
+    def load_predictions(self, file_path: Union[str, Path]) -> Union[np.ndarray, Dict[str, np.ndarray]]:
+        """Load predictions from a file.
+        
+        Args:
+            file_path: Path to the saved predictions
+            
+        Returns:
+            The loaded predictions
+            
+        Raises:
+            FileNotFoundError: If the file doesn't exist
+        """
+        file_path = Path(file_path)
+        if not file_path.exists():
+            raise FileNotFoundError(f"Predictions file not found: {file_path}")
+        
+        logger.info(f"Loading predictions from {file_path}")
+        
+        # Load with allow_pickle to handle both arrays and dicts
+        return np.load(file_path, allow_pickle=True)
+    
+    def explain_feature_importance(self, feature_names: Optional[List[str]] = None) -> List[Dict[str, Union[str, float]]]:
+        """Get feature importance of the model.
+        
+        Args:
+            feature_names: Optional list of feature names
+            
+        Returns:
+            List of dicts with feature names and importance values, sorted by importance
+            
+        Raises:
+            ValueError: If the model doesn't support feature importance
+        """
+        if not hasattr(self.model, "estimator_") or not hasattr(self.model.estimator_, "feature_importances_"):
+            raise ValueError(f"Model {self.model.__class__.__name__} does not support feature importance")
+        
+        importances = self.model.estimator_.feature_importances_
+        
+        if feature_names is None:
+            feature_names = [f"feature_{i}" for i in range(len(importances))]
+        
+        if len(feature_names) != len(importances):
+            logger.warning("Number of feature names does not match number of importance values")
+            feature_names = [f"feature_{i}" for i in range(len(importances))]
+        
+        # Create list of dicts with feature names and importances
+        feature_importances = [
+            {"feature": name, "importance": importance}
+            for name, importance in zip(feature_names, importances)
+        ]
+        
+        # Sort by importance (descending)
+        feature_importances.sort(key=lambda x: x["importance"], reverse=True)
+        
+        return feature_importances

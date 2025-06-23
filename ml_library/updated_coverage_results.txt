@@ -1,0 +1,1062 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.6.0
+rootdir: /home/huy/projects/Production-Ready-ML-Library/ml_library
+configfile: pyproject.toml
+testpaths: tests
+plugins: hypothesis-6.135.14, cov-3.0.0
+collected 148 items
+
+tests/integration/test_pipeline.py ......                                [  4%]
+tests/unit/test_base_model.py .......s.                                  [ 10%]
+tests/unit/test_config.py .......                                        [ 14%]
+tests/unit/test_config_loader.py FFF....FFF.                             [ 22%]
+tests/unit/test_knn_models.py ................                           [ 33%]
+tests/unit/test_metrics.py ............                                  [ 41%]
+tests/unit/test_models.py ...........                                    [ 48%]
+tests/unit/test_predictor.py .........ss.                                [ 56%]
+tests/unit/test_predictor_complete.py ....FFF.FFF.                       [ 64%]
+tests/unit/test_preprocessing.py ..FFFFFF..F.....                        [ 75%]
+tests/unit/test_svm_imports.py .                                         [ 76%]
+tests/unit/test_svm_models.py .............                              [ 85%]
+tests/unit/test_tree_models.py ............                              [ 93%]
+tests/unit/temp/test_imports.py ......                                   [ 97%]
+tests/unit/temp/test_svm.py ....                                         [100%]
+
+=================================== FAILURES ===================================
+_______________________ TestConfigLoader.test_load_yaml ________________________
+
+self = <test_config_loader.TestConfigLoader object at 0x727e728ff560>
+
+    def test_load_yaml(self):
+        """Test loading a YAML configuration file."""
+        # Create a temporary YAML config file
+        config = {"model": {"name": "test", "params": {"alpha": 0.1}}}
+    
+        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False) as tmp:
+>           yaml.dump(config, tmp)
+
+tests/unit/test_config_loader.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/__init__.py:253: in dump
+    return dump_all([data], stream, Dumper=Dumper, **kwds)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/__init__.py:241: in dump_all
+    dumper.represent(data)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/representer.py:28: in represent
+    self.serialize(node)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:54: in serialize
+    self.serialize_node(node, None, None)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:108: in serialize_node
+    self.serialize_node(value, node, key)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:107: in serialize_node
+    self.serialize_node(key, node, None)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:89: in serialize_node
+    self.emit(ScalarEvent(alias, node.tag, implicit, node.value,
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:115: in emit
+    self.state()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:393: in expect_first_block_mapping_key
+    return self.expect_block_mapping_key(first=True)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:403: in expect_block_mapping_key
+    self.expect_node(mapping=True, simple_key=True)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:244: in expect_node
+    self.expect_scalar()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:268: in expect_scalar
+    self.process_scalar()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:533: in process_scalar
+    self.write_plain(self.analysis.scalar, split)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:1132: in write_plain
+    self.stream.write(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('model',), kwargs = {}
+
+    @_functools.wraps(func)
+    def func_wrapper(*args, **kwargs):
+>       return func(*args, **kwargs)
+E       TypeError: a bytes-like object is required, not 'str'
+
+/usr/lib/python3.12/tempfile.py:638: TypeError
+_______________________ TestConfigLoader.test_load_json ________________________
+
+self = <test_config_loader.TestConfigLoader object at 0x727e728ff1d0>
+
+    def test_load_json(self):
+        """Test loading a JSON configuration file."""
+        # Create a temporary JSON config file
+        config = {"model": {"name": "test", "params": {"alpha": 0.1}}}
+    
+        with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as tmp:
+>           json.dump(config, tmp)
+
+tests/unit/test_config_loader.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/json/__init__.py:180: in dump
+    fp.write(chunk)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('{',), kwargs = {}
+
+    @_functools.wraps(func)
+    def func_wrapper(*args, **kwargs):
+>       return func(*args, **kwargs)
+E       TypeError: a bytes-like object is required, not 'str'
+
+/usr/lib/python3.12/tempfile.py:638: TypeError
+_______________ TestConfigLoader.test_load_yaml_with_path_object _______________
+
+self = <test_config_loader.TestConfigLoader object at 0x727e728ff290>
+
+    def test_load_yaml_with_path_object(self):
+        """Test loading a YAML configuration file using a Path object."""
+        # Create a temporary YAML config file
+        config = {"model": {"name": "test", "params": {"alpha": 0.1}}}
+    
+        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False) as tmp:
+>           yaml.dump(config, tmp)
+
+tests/unit/test_config_loader.py:67: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/__init__.py:253: in dump
+    return dump_all([data], stream, Dumper=Dumper, **kwds)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/__init__.py:241: in dump_all
+    dumper.represent(data)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/representer.py:28: in represent
+    self.serialize(node)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:54: in serialize
+    self.serialize_node(node, None, None)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:108: in serialize_node
+    self.serialize_node(value, node, key)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:107: in serialize_node
+    self.serialize_node(key, node, None)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:89: in serialize_node
+    self.emit(ScalarEvent(alias, node.tag, implicit, node.value,
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:115: in emit
+    self.state()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:393: in expect_first_block_mapping_key
+    return self.expect_block_mapping_key(first=True)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:403: in expect_block_mapping_key
+    self.expect_node(mapping=True, simple_key=True)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:244: in expect_node
+    self.expect_scalar()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:268: in expect_scalar
+    self.process_scalar()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:533: in process_scalar
+    self.write_plain(self.analysis.scalar, split)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:1132: in write_plain
+    self.stream.write(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('model',), kwargs = {}
+
+    @_functools.wraps(func)
+    def func_wrapper(*args, **kwargs):
+>       return func(*args, **kwargs)
+E       TypeError: a bytes-like object is required, not 'str'
+
+/usr/lib/python3.12/tempfile.py:638: TypeError
+_____________________ TestConfigLoader.test_load_auto_yaml _____________________
+
+self = <test_config_loader.TestConfigLoader object at 0x727e7290c2c0>
+
+    def test_load_auto_yaml(self):
+        """Test auto-detection of YAML files."""
+        config = {"model": {"name": "test"}}
+    
+        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False) as tmp:
+>           yaml.dump(config, tmp)
+
+tests/unit/test_config_loader.py:126: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/__init__.py:253: in dump
+    return dump_all([data], stream, Dumper=Dumper, **kwds)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/__init__.py:241: in dump_all
+    dumper.represent(data)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/representer.py:28: in represent
+    self.serialize(node)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:54: in serialize
+    self.serialize_node(node, None, None)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:108: in serialize_node
+    self.serialize_node(value, node, key)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:107: in serialize_node
+    self.serialize_node(key, node, None)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:89: in serialize_node
+    self.emit(ScalarEvent(alias, node.tag, implicit, node.value,
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:115: in emit
+    self.state()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:393: in expect_first_block_mapping_key
+    return self.expect_block_mapping_key(first=True)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:403: in expect_block_mapping_key
+    self.expect_node(mapping=True, simple_key=True)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:244: in expect_node
+    self.expect_scalar()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:268: in expect_scalar
+    self.process_scalar()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:533: in process_scalar
+    self.write_plain(self.analysis.scalar, split)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:1132: in write_plain
+    self.stream.write(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('model',), kwargs = {}
+
+    @_functools.wraps(func)
+    def func_wrapper(*args, **kwargs):
+>       return func(*args, **kwargs)
+E       TypeError: a bytes-like object is required, not 'str'
+
+/usr/lib/python3.12/tempfile.py:638: TypeError
+_____________________ TestConfigLoader.test_load_auto_yml ______________________
+
+self = <test_config_loader.TestConfigLoader object at 0x727e7290c950>
+
+    def test_load_auto_yml(self):
+        """Test auto-detection of YML files."""
+        config = {"model": {"name": "test"}}
+    
+        with tempfile.NamedTemporaryFile(suffix=".yml", delete=False) as tmp:
+>           yaml.dump(config, tmp)
+
+tests/unit/test_config_loader.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/__init__.py:253: in dump
+    return dump_all([data], stream, Dumper=Dumper, **kwds)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/__init__.py:241: in dump_all
+    dumper.represent(data)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/representer.py:28: in represent
+    self.serialize(node)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:54: in serialize
+    self.serialize_node(node, None, None)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:108: in serialize_node
+    self.serialize_node(value, node, key)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:107: in serialize_node
+    self.serialize_node(key, node, None)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/serializer.py:89: in serialize_node
+    self.emit(ScalarEvent(alias, node.tag, implicit, node.value,
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:115: in emit
+    self.state()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:393: in expect_first_block_mapping_key
+    return self.expect_block_mapping_key(first=True)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:403: in expect_block_mapping_key
+    self.expect_node(mapping=True, simple_key=True)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:244: in expect_node
+    self.expect_scalar()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:268: in expect_scalar
+    self.process_scalar()
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:533: in process_scalar
+    self.write_plain(self.analysis.scalar, split)
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/yaml/emitter.py:1132: in write_plain
+    self.stream.write(data)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('model',), kwargs = {}
+
+    @_functools.wraps(func)
+    def func_wrapper(*args, **kwargs):
+>       return func(*args, **kwargs)
+E       TypeError: a bytes-like object is required, not 'str'
+
+/usr/lib/python3.12/tempfile.py:638: TypeError
+_____________________ TestConfigLoader.test_load_auto_json _____________________
+
+self = <test_config_loader.TestConfigLoader object at 0x727e7290ce30>
+
+    def test_load_auto_json(self):
+        """Test auto-detection of JSON files."""
+        config = {"model": {"name": "test"}}
+    
+        with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as tmp:
+>           json.dump(config, tmp)
+
+tests/unit/test_config_loader.py:156: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/json/__init__.py:180: in dump
+    fp.write(chunk)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('{',), kwargs = {}
+
+    @_functools.wraps(func)
+    def func_wrapper(*args, **kwargs):
+>       return func(*args, **kwargs)
+E       TypeError: a bytes-like object is required, not 'str'
+
+/usr/lib/python3.12/tempfile.py:638: TypeError
+________________ TestPredictor.test_predict_with_probabilities _________________
+
+self = <test_predictor_complete.TestPredictor object at 0x727e72970860>
+
+    def test_predict_with_probabilities(self):
+        """Test the predict method with probabilities."""
+        # Create a mock model for testing
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.return_value = np.array([1, 0, 1])
+>       model.predict_proba.return_value = np.array([
+            [0.2, 0.8],
+            [0.7, 0.3],
+            [0.1, 0.9]
+        ])
+
+tests/unit/test_predictor_complete.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock spec='MockModel' id='125887413778624'>, name = 'predict_proba'
+
+    def __getattr__(self, name):
+        if name in {'_mock_methods', '_mock_unsafe'}:
+            raise AttributeError(name)
+        elif self._mock_methods is not None:
+            if name not in self._mock_methods or name in _all_magics:
+>               raise AttributeError("Mock object has no attribute %r" % name)
+E               AttributeError: Mock object has no attribute 'predict_proba'
+
+/usr/lib/python3.12/unittest/mock.py:658: AttributeError
+____ TestPredictor.test_predict_with_probabilities_handling_attribute_error ____
+
+self = <test_predictor_complete.TestPredictor object at 0x727e72970980>
+
+    def test_predict_with_probabilities_handling_attribute_error(self):
+        """Test handling of AttributeError when requesting probabilities."""
+        # Create a mock model that raises AttributeError
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.return_value = np.array([1, 0, 1])
+    
+        # Make predict_proba raise AttributeError
+>       model.predict_proba.side_effect = AttributeError("'MockModel' has no attribute 'predict_proba'")
+
+tests/unit/test_predictor_complete.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock spec='MockModel' id='125887411192752'>, name = 'predict_proba'
+
+    def __getattr__(self, name):
+        if name in {'_mock_methods', '_mock_unsafe'}:
+            raise AttributeError(name)
+        elif self._mock_methods is not None:
+            if name not in self._mock_methods or name in _all_magics:
+>               raise AttributeError("Mock object has no attribute %r" % name)
+E               AttributeError: Mock object has no attribute 'predict_proba'
+
+/usr/lib/python3.12/unittest/mock.py:658: AttributeError
+_ TestPredictor.test_predict_with_probabilities_handling_not_implemented_error _
+
+self = <test_predictor_complete.TestPredictor object at 0x727e72970aa0>
+
+    def test_predict_with_probabilities_handling_not_implemented_error(self):
+        """Test handling of NotImplementedError when requesting probabilities."""
+        # Create a mock model that raises NotImplementedError
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.return_value = np.array([1, 0, 1])
+    
+        # Make predict_proba raise NotImplementedError
+>       model.predict_proba.side_effect = NotImplementedError("Probabilities not implemented")
+
+tests/unit/test_predictor_complete.py:130: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock spec='MockModel' id='125887412777952'>, name = 'predict_proba'
+
+    def __getattr__(self, name):
+        if name in {'_mock_methods', '_mock_unsafe'}:
+            raise AttributeError(name)
+        elif self._mock_methods is not None:
+            if name not in self._mock_methods or name in _all_magics:
+>               raise AttributeError("Mock object has no attribute %r" % name)
+E               AttributeError: Mock object has no attribute 'predict_proba'
+
+/usr/lib/python3.12/unittest/mock.py:658: AttributeError
+_____________ TestPredictor.test_predict_batch_with_probabilities ______________
+
+self = <test_predictor_complete.TestPredictor object at 0x727e72970ce0>
+
+    def test_predict_batch_with_probabilities(self):
+        """Test the predict_batch method with probabilities."""
+        # Create a mock model for testing
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.side_effect = [
+            np.array([1, 0]),
+            np.array([1, 1])
+        ]
+>       model.predict_proba.side_effect = [
+            np.array([[0.2, 0.8], [0.7, 0.3]]),
+            np.array([[0.1, 0.9], [0.3, 0.7]])
+        ]
+
+tests/unit/test_predictor_complete.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock spec='MockModel' id='125887411201584'>, name = 'predict_proba'
+
+    def __getattr__(self, name):
+        if name in {'_mock_methods', '_mock_unsafe'}:
+            raise AttributeError(name)
+        elif self._mock_methods is not None:
+            if name not in self._mock_methods or name in _all_magics:
+>               raise AttributeError("Mock object has no attribute %r" % name)
+E               AttributeError: Mock object has no attribute 'predict_proba'
+
+/usr/lib/python3.12/unittest/mock.py:658: AttributeError
+_________________ TestPredictor.test_save_and_load_predictions _________________
+
+self = <test_predictor_complete.TestPredictor object at 0x727e72970e00>
+
+    def test_save_and_load_predictions(self):
+        """Test saving and loading predictions."""
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.return_value = np.array([1, 2, 3])
+    
+        predictor = Predictor(model)
+        X = [[1, 2], [3, 4], [5, 6]]
+    
+        # Get predictions
+        predictions = predictor.predict(X)
+    
+        # Create temporary file
+        with tempfile.NamedTemporaryFile(delete=False) as tmp:
+            temp_path = tmp.name
+    
+        try:
+            # Save predictions
+            predictor.save_predictions(predictions, temp_path)
+            assert os.path.exists(temp_path)
+    
+            # Load predictions
+>           loaded_predictions = predictor.load_predictions(temp_path)
+
+tests/unit/test_predictor_complete.py:227: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+ml_library/inference/predictor.py:169: in load_predictions
+    return np.load(file_path, allow_pickle=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+file = PosixPath('/tmp/tmp92rfqbfj'), mmap_mode = None, allow_pickle = True
+fix_imports = True, encoding = 'ASCII'
+
+    @set_module('numpy')
+    def load(file, mmap_mode=None, allow_pickle=False, fix_imports=True,
+             encoding='ASCII', *, max_header_size=format._MAX_HEADER_SIZE):
+        """
+        Load arrays or pickled objects from ``.npy``, ``.npz`` or pickled files.
+    
+        .. warning:: Loading files that contain object arrays uses the ``pickle``
+                     module, which is not secure against erroneous or maliciously
+                     constructed data. Consider passing ``allow_pickle=False`` to
+                     load data that is known not to contain object arrays for the
+                     safer handling of untrusted sources.
+    
+        Parameters
+        ----------
+        file : file-like object, string, or pathlib.Path
+            The file to read. File-like objects must support the
+            ``seek()`` and ``read()`` methods and must always
+            be opened in binary mode.  Pickled files require that the
+            file-like object support the ``readline()`` method as well.
+        mmap_mode : {None, 'r+', 'r', 'w+', 'c'}, optional
+            If not None, then memory-map the file, using the given mode (see
+            `numpy.memmap` for a detailed description of the modes).  A
+            memory-mapped array is kept on disk. However, it can be accessed
+            and sliced like any ndarray.  Memory mapping is especially useful
+            for accessing small fragments of large files without reading the
+            entire file into memory.
+        allow_pickle : bool, optional
+            Allow loading pickled object arrays stored in npy files. Reasons for
+            disallowing pickles include security, as loading pickled data can
+            execute arbitrary code. If pickles are disallowed, loading object
+            arrays will fail. Default: False
+    
+            .. versionchanged:: 1.16.3
+                Made default False in response to CVE-2019-6446.
+    
+        fix_imports : bool, optional
+            Only useful when loading Python 2 generated pickled files on Python 3,
+            which includes npy/npz files containing object arrays. If `fix_imports`
+            is True, pickle will try to map the old Python 2 names to the new names
+            used in Python 3.
+        encoding : str, optional
+            What encoding to use when reading Python 2 strings. Only useful when
+            loading Python 2 generated pickled files in Python 3, which includes
+            npy/npz files containing object arrays. Values other than 'latin1',
+            'ASCII', and 'bytes' are not allowed, as they can corrupt numerical
+            data. Default: 'ASCII'
+        max_header_size : int, optional
+            Maximum allowed size of the header.  Large headers may not be safe
+            to load securely and thus require explicitly passing a larger value.
+            See :py:func:`ast.literal_eval()` for details.
+            This option is ignored when `allow_pickle` is passed.  In that case
+            the file is by definition trusted and the limit is unnecessary.
+    
+        Returns
+        -------
+        result : array, tuple, dict, etc.
+            Data stored in the file. For ``.npz`` files, the returned instance
+            of NpzFile class must be closed to avoid leaking file descriptors.
+    
+        Raises
+        ------
+        OSError
+            If the input file does not exist or cannot be read.
+        UnpicklingError
+            If ``allow_pickle=True``, but the file cannot be loaded as a pickle.
+        ValueError
+            The file contains an object array, but ``allow_pickle=False`` given.
+        EOFError
+            When calling ``np.load`` multiple times on the same file handle,
+            if all data has already been read
+    
+        See Also
+        --------
+        save, savez, savez_compressed, loadtxt
+        memmap : Create a memory-map to an array stored in a file on disk.
+        lib.format.open_memmap : Create or load a memory-mapped ``.npy`` file.
+    
+        Notes
+        -----
+        - If the file contains pickle data, then whatever object is stored
+          in the pickle is returned.
+        - If the file is a ``.npy`` file, then a single array is returned.
+        - If the file is a ``.npz`` file, then a dictionary-like object is
+          returned, containing ``{filename: array}`` key-value pairs, one for
+          each file in the archive.
+        - If the file is a ``.npz`` file, the returned value supports the
+          context manager protocol in a similar fashion to the open function::
+    
+            with load('foo.npz') as data:
+                a = data['a']
+    
+          The underlying file descriptor is closed when exiting the 'with'
+          block.
+    
+        Examples
+        --------
+        Store data to disk, and load it again:
+    
+        >>> np.save('/tmp/123', np.array([[1, 2, 3], [4, 5, 6]]))
+        >>> np.load('/tmp/123.npy')
+        array([[1, 2, 3],
+               [4, 5, 6]])
+    
+        Store compressed data to disk, and load it again:
+    
+        >>> a=np.array([[1, 2, 3], [4, 5, 6]])
+        >>> b=np.array([1, 2])
+        >>> np.savez('/tmp/123.npz', a=a, b=b)
+        >>> data = np.load('/tmp/123.npz')
+        >>> data['a']
+        array([[1, 2, 3],
+               [4, 5, 6]])
+        >>> data['b']
+        array([1, 2])
+        >>> data.close()
+    
+        Mem-map the stored array, and then access the second row
+        directly from disk:
+    
+        >>> X = np.load('/tmp/123.npy', mmap_mode='r')
+        >>> X[1, :]
+        memmap([4, 5, 6])
+    
+        """
+        if encoding not in ('ASCII', 'latin1', 'bytes'):
+            # The 'encoding' value for pickle also affects what encoding
+            # the serialized binary data of NumPy arrays is loaded
+            # in. Pickle does not pass on the encoding information to
+            # NumPy. The unpickling code in numpy.core.multiarray is
+            # written to assume that unicode data appearing where binary
+            # should be is in 'latin1'. 'bytes' is also safe, as is 'ASCII'.
+            #
+            # Other encoding values can corrupt binary data, and we
+            # purposefully disallow them. For the same reason, the errors=
+            # argument is not exposed, as values other than 'strict'
+            # result can similarly silently corrupt numerical data.
+            raise ValueError("encoding must be 'ASCII', 'latin1', or 'bytes'")
+    
+        pickle_kwargs = dict(encoding=encoding, fix_imports=fix_imports)
+    
+        with contextlib.ExitStack() as stack:
+            if hasattr(file, 'read'):
+                fid = file
+                own_fid = False
+            else:
+                fid = stack.enter_context(open(os_fspath(file), "rb"))
+                own_fid = True
+    
+            # Code to distinguish from NumPy binary files and pickles.
+            _ZIP_PREFIX = b'PK\x03\x04'
+            _ZIP_SUFFIX = b'PK\x05\x06' # empty zip files start with this
+            N = len(format.MAGIC_PREFIX)
+            magic = fid.read(N)
+            if not magic:
+>               raise EOFError("No data left in file")
+E               EOFError: No data left in file
+
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/numpy/lib/npyio.py:436: EOFError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 02:10:13 | DEBUG    | ml_library.inference.predictor:__init__:40 | Initialized predictor with model MockModel
+2025-06-23 02:10:13 | DEBUG    | ml_library.inference.predictor:predict:61 | Making predictions on 3 samples
+2025-06-23 02:10:13 | INFO     | ml_library.inference.predictor:save_predictions:145 | Saving predictions to /tmp/tmp92rfqbfj
+2025-06-23 02:10:13 | INFO     | ml_library.inference.predictor:load_predictions:166 | Loading predictions from /tmp/tmp92rfqbfj
+____________ TestPredictor.test_save_predictions_with_probabilities ____________
+
+self = <test_predictor_complete.TestPredictor object at 0x727e72970f20>
+
+    def test_save_predictions_with_probabilities(self):
+        """Test saving predictions with probabilities."""
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.return_value = np.array([1, 0, 1])
+>       model.predict_proba.return_value = np.array([
+            [0.2, 0.8],
+            [0.7, 0.3],
+            [0.1, 0.9]
+        ])
+
+tests/unit/test_predictor_complete.py:241: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock spec='MockModel' id='125887411134560'>, name = 'predict_proba'
+
+    def __getattr__(self, name):
+        if name in {'_mock_methods', '_mock_unsafe'}:
+            raise AttributeError(name)
+        elif self._mock_methods is not None:
+            if name not in self._mock_methods or name in _all_magics:
+>               raise AttributeError("Mock object has no attribute %r" % name)
+E               AttributeError: Mock object has no attribute 'predict_proba'
+
+/usr/lib/python3.12/unittest/mock.py:658: AttributeError
+______________________ TestStandardScaler.test_transform _______________________
+
+self = <test_preprocessing.TestStandardScaler object at 0x727e72970c80>
+
+    def test_transform(self):
+        """Test transform method of StandardScaler."""
+        X = np.array([[1, 2], [3, 4], [5, 6]])
+        scaler = StandardScaler()
+        scaler.fit(X)
+    
+>       X_scaled = scaler.transform(X)
+
+tests/unit/test_preprocessing.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.preprocessing.transformers.StandardScaler object at 0x727e728574a0>
+X = array([[1, 2],
+       [3, 4],
+       [5, 6]])
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        """Scale features of X according to feature-wise statistics.
+    
+        Args:
+            X: The data to scale
+    
+        Returns:
+            Scaled data
+        """
+        if not self._fitted:
+            raise ValueError("StandardScaler is not fitted yet. Call 'fit' first.")
+    
+        X = self._validate_data(X)
+    
+        if self.mean_ is None or self.scale_ is None:
+            raise ValueError("StandardScaler is not fitted correctly.")
+    
+        X_scaled = X.copy()
+        if self.with_mean:
+>           X_scaled -= self.mean_
+E           numpy.core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+ml_library/preprocessing/transformers.py:80: UFuncTypeError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 02:10:13 | DEBUG    | ml_library.preprocessing.transformers:fit:58 | StandardScaler fitted
+____________________ TestStandardScaler.test_fit_transform _____________________
+
+self = <test_preprocessing.TestStandardScaler object at 0x727e72970920>
+
+    def test_fit_transform(self):
+        """Test fit_transform method of StandardScaler."""
+        X = np.array([[1, 2], [3, 4], [5, 6]])
+        scaler = StandardScaler()
+    
+>       X_scaled = scaler.fit_transform(X)
+
+tests/unit/test_preprocessing.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+ml_library/preprocessing/transformers.py:95: in fit_transform
+    return self.fit(X).transform(X)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.preprocessing.transformers.StandardScaler object at 0x727e72970a70>
+X = array([[1, 2],
+       [3, 4],
+       [5, 6]])
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        """Scale features of X according to feature-wise statistics.
+    
+        Args:
+            X: The data to scale
+    
+        Returns:
+            Scaled data
+        """
+        if not self._fitted:
+            raise ValueError("StandardScaler is not fitted yet. Call 'fit' first.")
+    
+        X = self._validate_data(X)
+    
+        if self.mean_ is None or self.scale_ is None:
+            raise ValueError("StandardScaler is not fitted correctly.")
+    
+        X_scaled = X.copy()
+        if self.with_mean:
+>           X_scaled -= self.mean_
+E           numpy.core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+ml_library/preprocessing/transformers.py:80: UFuncTypeError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 02:10:13 | DEBUG    | ml_library.preprocessing.transformers:fit:58 | StandardScaler fitted
+__________________ TestStandardScaler.test_inverse_transform ___________________
+
+self = <test_preprocessing.TestStandardScaler object at 0x727e729705c0>
+
+    def test_inverse_transform(self):
+        """Test inverse_transform method of StandardScaler."""
+        X = np.array([[1, 2], [3, 4], [5, 6]])
+        scaler = StandardScaler()
+        scaler.fit(X)
+    
+>       X_scaled = scaler.transform(X)
+
+tests/unit/test_preprocessing.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.preprocessing.transformers.StandardScaler object at 0x727e72852ae0>
+X = array([[1, 2],
+       [3, 4],
+       [5, 6]])
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        """Scale features of X according to feature-wise statistics.
+    
+        Args:
+            X: The data to scale
+    
+        Returns:
+            Scaled data
+        """
+        if not self._fitted:
+            raise ValueError("StandardScaler is not fitted yet. Call 'fit' first.")
+    
+        X = self._validate_data(X)
+    
+        if self.mean_ is None or self.scale_ is None:
+            raise ValueError("StandardScaler is not fitted correctly.")
+    
+        X_scaled = X.copy()
+        if self.with_mean:
+>           X_scaled -= self.mean_
+E           numpy.core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+ml_library/preprocessing/transformers.py:80: UFuncTypeError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 02:10:13 | DEBUG    | ml_library.preprocessing.transformers:fit:58 | StandardScaler fitted
+___________________ TestStandardScaler.test_with_mean_false ____________________
+
+self = <test_preprocessing.TestStandardScaler object at 0x727e72971970>
+
+    def test_with_mean_false(self):
+        """Test StandardScaler with with_mean=False."""
+        X = np.array([[1, 2], [3, 4], [5, 6]])
+        scaler = StandardScaler(with_mean=False)
+>       X_scaled = scaler.fit_transform(X)
+
+tests/unit/test_preprocessing.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+ml_library/preprocessing/transformers.py:95: in fit_transform
+    return self.fit(X).transform(X)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.preprocessing.transformers.StandardScaler object at 0x727e726f8890>
+X = array([[1, 2],
+       [3, 4],
+       [5, 6]])
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        """Scale features of X according to feature-wise statistics.
+    
+        Args:
+            X: The data to scale
+    
+        Returns:
+            Scaled data
+        """
+        if not self._fitted:
+            raise ValueError("StandardScaler is not fitted yet. Call 'fit' first.")
+    
+        X = self._validate_data(X)
+    
+        if self.mean_ is None or self.scale_ is None:
+            raise ValueError("StandardScaler is not fitted correctly.")
+    
+        X_scaled = X.copy()
+        if self.with_mean:
+            X_scaled -= self.mean_
+        if self.with_std:
+>           X_scaled /= self.scale_
+E           numpy.core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'divide' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+ml_library/preprocessing/transformers.py:82: UFuncTypeError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 02:10:13 | DEBUG    | ml_library.preprocessing.transformers:fit:58 | StandardScaler fitted
+____________________ TestStandardScaler.test_with_std_false ____________________
+
+self = <test_preprocessing.TestStandardScaler object at 0x727e72971a90>
+
+    def test_with_std_false(self):
+        """Test StandardScaler with with_std=False."""
+        X = np.array([[1, 2], [3, 4], [5, 6]])
+        scaler = StandardScaler(with_std=False)
+>       X_scaled = scaler.fit_transform(X)
+
+tests/unit/test_preprocessing.py:82: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+ml_library/preprocessing/transformers.py:95: in fit_transform
+    return self.fit(X).transform(X)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.preprocessing.transformers.StandardScaler object at 0x727e726f9670>
+X = array([[1, 2],
+       [3, 4],
+       [5, 6]])
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        """Scale features of X according to feature-wise statistics.
+    
+        Args:
+            X: The data to scale
+    
+        Returns:
+            Scaled data
+        """
+        if not self._fitted:
+            raise ValueError("StandardScaler is not fitted yet. Call 'fit' first.")
+    
+        X = self._validate_data(X)
+    
+        if self.mean_ is None or self.scale_ is None:
+            raise ValueError("StandardScaler is not fitted correctly.")
+    
+        X_scaled = X.copy()
+        if self.with_mean:
+>           X_scaled -= self.mean_
+E           numpy.core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+ml_library/preprocessing/transformers.py:80: UFuncTypeError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 02:10:13 | DEBUG    | ml_library.preprocessing.transformers:fit:58 | StandardScaler fitted
+_______________________ TestStandardScaler.test_1d_array _______________________
+
+self = <test_preprocessing.TestStandardScaler object at 0x727e72971bb0>
+
+    def test_1d_array(self):
+        """Test that 1D arrays are handled correctly."""
+        X = np.array([1, 3, 5])
+        scaler = StandardScaler()
+>       X_scaled = scaler.fit_transform(X)
+
+tests/unit/test_preprocessing.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+ml_library/preprocessing/transformers.py:95: in fit_transform
+    return self.fit(X).transform(X)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.preprocessing.transformers.StandardScaler object at 0x727e726fa3f0>
+X = array([[1],
+       [3],
+       [5]])
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        """Scale features of X according to feature-wise statistics.
+    
+        Args:
+            X: The data to scale
+    
+        Returns:
+            Scaled data
+        """
+        if not self._fitted:
+            raise ValueError("StandardScaler is not fitted yet. Call 'fit' first.")
+    
+        X = self._validate_data(X)
+    
+        if self.mean_ is None or self.scale_ is None:
+            raise ValueError("StandardScaler is not fitted correctly.")
+    
+        X_scaled = X.copy()
+        if self.with_mean:
+>           X_scaled -= self.mean_
+E           numpy.core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'subtract' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+
+ml_library/preprocessing/transformers.py:80: UFuncTypeError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 02:10:13 | DEBUG    | ml_library.preprocessing.transformers:fit:58 | StandardScaler fitted
+__________________________ TestMinMaxScaler.test_fit ___________________________
+
+self = <test_preprocessing.TestMinMaxScaler object at 0x727e72971f10>
+
+    def test_fit(self):
+        """Test fitting of MinMaxScaler."""
+        X = np.array([[1, 2], [3, 4], [5, 6]])
+        scaler = MinMaxScaler()
+        fitted_scaler = scaler.fit(X)
+    
+        assert fitted_scaler is scaler  # Check if it returns self
+        assert scaler._fitted is True
+    
+        # Check computed statistics
+>       np.testing.assert_almost_equal(scaler.min_, np.array([1, 2]))
+
+tests/unit/test_preprocessing.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+/usr/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = (<function assert_array_almost_equal.<locals>.compare at 0x727e7267c7c0>, array([-0.25, -0.5 ]), array([1, 2]))
+kwds = {'err_msg': '', 'header': 'Arrays are not almost equal to 7 decimals', 'precision': 7, 'verbose': True}
+
+    @wraps(func)
+    def inner(*args, **kwds):
+        with self._recreate_cm():
+>           return func(*args, **kwds)
+E           AssertionError: 
+E           Arrays are not almost equal to 7 decimals
+E           
+E           Mismatched elements: 2 / 2 (100%)
+E           Max absolute difference: 2.5
+E           Max relative difference: 1.25
+E            x: array([-0.25, -0.5 ])
+E            y: array([1, 2])
+
+/usr/lib/python3.12/contextlib.py:81: AssertionError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 02:10:13 | DEBUG    | ml_library.preprocessing.transformers:fit:185 | MinMaxScaler fitted
+=============================== warnings summary ===============================
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_configure_node uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_configure_node(self, node):
+
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_testnodedown uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_testnodedown(self, node, error):
+
+tests/unit/test_tree_models.py::test_classifier_fit_predict[XGBoostClassifier-model_params2]
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [02:10:13] WARNING: /workspace/src/learner.cc:740: 
+  Parameters: { "use_label_encoder" } are not used.
+  
+    warnings.warn(smsg, UserWarning)
+
+tests/unit/temp/test_imports.py::test_base_imports
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_base_imports returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_linear_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_linear_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_tree_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_tree_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_boosting_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_boosting_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_svm_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_svm_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_knn_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_knn_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_regressor_init
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_regressor_init returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_classifier_init
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_classifier_init returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_regressor_fit_predict
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_regressor_fit_predict returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_classifier_fit_predict
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_classifier_fit_predict returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform linux, python 3.12.3-final-0 -----------
+Name                                       Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------
+ml_library/__init__.py                         1      0   100%
+ml_library/config/__init__.py                  2      0   100%
+ml_library/config/loader.py                   40      0   100%
+ml_library/evaluation/__init__.py              2      0   100%
+ml_library/evaluation/metrics.py              48      0   100%
+ml_library/inference/__init__.py               2      0   100%
+ml_library/inference/predictor.py             72     11    85%   183-204
+ml_library/models/__init__.py                  9      0   100%
+ml_library/models/base.py                     43      3    93%   53, 65, 105
+ml_library/models/classification.py          104     27    74%   75, 94, 112-113, 131-136, 139-144, 158-161, 163-166, 180-181, 197, 200, 237, 267, 270
+ml_library/models/knn_models.py               99      9    91%   65-67, 136, 227-229, 300, 316
+ml_library/models/random_forest.py           112     15    87%   65-67, 128, 144, 157, 177, 235-237, 299, 314, 330, 343, 363
+ml_library/models/regression.py               75     22    71%   72-73, 88-118, 125-126, 145, 162, 193, 196
+ml_library/models/svm_models.py              106     11    90%   69-71, 142, 176, 242-244, 318, 340, 375
+ml_library/models/tree_models.py             110     15    86%   61-63, 122, 138, 151, 170, 224-226, 286, 301, 317, 330, 349
+ml_library/models/xgboost_models.py          114     15    87%   69-71, 133, 149, 162, 183, 245-247, 312, 327, 343, 356, 377
+ml_library/preprocessing/__init__.py           2      0   100%
+ml_library/preprocessing/transformers.py     101     16    84%   76, 84, 109-120, 132, 204, 238, 255, 258
+ml_library/training/__init__.py                2      0   100%
+ml_library/training/trainer.py                45      3    93%   79-80, 130
+ml_library/utils/__init__.py                   2      0   100%
+ml_library/utils/logger.py                    13      1    92%   42
+------------------------------------------------------------------------
+TOTAL                                       1104    148    87%
+Coverage XML written to file coverage.xml
+
+=========================== short test summary info ============================
+FAILED tests/unit/test_config_loader.py::TestConfigLoader::test_load_yaml - T...
+FAILED tests/unit/test_config_loader.py::TestConfigLoader::test_load_json - T...
+FAILED tests/unit/test_config_loader.py::TestConfigLoader::test_load_yaml_with_path_object
+FAILED tests/unit/test_config_loader.py::TestConfigLoader::test_load_auto_yaml
+FAILED tests/unit/test_config_loader.py::TestConfigLoader::test_load_auto_yml
+FAILED tests/unit/test_config_loader.py::TestConfigLoader::test_load_auto_json
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_predict_with_probabilities
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_predict_with_probabilities_handling_attribute_error
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_predict_with_probabilities_handling_not_implemented_error
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_predict_batch_with_probabilities
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_save_and_load_predictions
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_save_predictions_with_probabilities
+FAILED tests/unit/test_preprocessing.py::TestStandardScaler::test_transform
+FAILED tests/unit/test_preprocessing.py::TestStandardScaler::test_fit_transform
+FAILED tests/unit/test_preprocessing.py::TestStandardScaler::test_inverse_transform
+FAILED tests/unit/test_preprocessing.py::TestStandardScaler::test_with_mean_false
+FAILED tests/unit/test_preprocessing.py::TestStandardScaler::test_with_std_false
+FAILED tests/unit/test_preprocessing.py::TestStandardScaler::test_1d_array - ...
+FAILED tests/unit/test_preprocessing.py::TestMinMaxScaler::test_fit - Asserti...
+============ 19 failed, 126 passed, 3 skipped, 13 warnings in 4.98s ============
