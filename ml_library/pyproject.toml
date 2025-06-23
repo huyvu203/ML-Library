@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "ml_library"
+version = "0.1.0"
+description = "A production-ready Python machine learning library"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/yourusername/ml_library"
+documentation = "https://ml-library.readthedocs.io"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+packages = [{include = "ml_library"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+numpy = "^1.22.0"
+pandas = "^1.4.0"
+scikit-learn = "^1.0.2"
+pyyaml = "^6.0"
+loguru = "^0.6.0"
+typing-extensions = "^4.3.0"
+xgboost = "^2.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+pytest-cov = "^3.0.0"
+hypothesis = "^6.54.1"
+black = "^22.3.0"
+flake8 = "^4.0.1"
+mypy = "^0.961"
+bandit = "^1.7.4"
+pre-commit = "^2.19.0"
+sphinx = "^5.0.1"
+sphinx-rtd-theme = "^1.0.0"
+sphinx-autodoc-typehints = "^1.18.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+include = '\.pyi?$'
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+python_classes = "Test*"
+addopts = "--cov=ml_library --cov-report=xml --cov-report=term-missing"
