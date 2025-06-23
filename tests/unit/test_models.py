@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from ml_library.models import LinearRegression, LogisticRegression
+from models import LinearRegression, LogisticRegression
 
 
 def test_linear_regression_initialization():

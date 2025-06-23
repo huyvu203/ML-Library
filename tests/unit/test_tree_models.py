@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from ml_library.models import (
+from models import (
     DecisionTreeRegressor,
     DecisionTreeClassifier,
     RandomForestRegressor,

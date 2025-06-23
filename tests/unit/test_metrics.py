@@ -14,7 +14,7 @@ from sklearn.metrics import (
     roc_auc_score
 )
 
-from ml_library.evaluation.metrics import BaseMetrics, RegressionMetrics, ClassificationMetrics
+from evaluation.metrics import BaseMetrics, RegressionMetrics, ClassificationMetrics
 
 
 class TestBaseMetrics:

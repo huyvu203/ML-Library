@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from ml_library.preprocessing import StandardScaler, MinMaxScaler
+from preprocessing import StandardScaler, MinMaxScaler
 
 
 class TestStandardScaler:
@@ -128,6 +128,7 @@ class TestMinMaxScaler:
         fitted_scaler = scaler.fit(X)
         
         assert fitted_scaler is scaler  # Check if it returns self
+        assert scaler._fitted is True
         assert scaler._fitted is True
         
         # Check computed statistics

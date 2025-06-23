@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from ml_library.models.base import BaseModel
+from models.base import BaseModel
 
 
 # Create a concrete implementation of BaseModel for testing

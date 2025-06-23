@@ -3,14 +3,14 @@
 import numpy as np
 import pytest
 
-from ml_library.models import (
+from models import (
     LinearRegression, LogisticRegression,
     SVMRegressor, SVMClassifier,
     KNNRegressor, KNNClassifier
 )
-from ml_library.training import Trainer
-from ml_library.evaluation import RegressionMetrics, ClassificationMetrics
-from ml_library.inference import Predictor
+from training import Trainer
+from evaluation import RegressionMetrics, ClassificationMetrics
+from inference import Predictor
 
 
 def test_regression_pipeline(sample_regression_data):

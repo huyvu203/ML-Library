@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from ml_library.models import KNNRegressor, KNNClassifier
+from models import KNNRegressor, KNNClassifier
 
 
 class TestKNNModels:

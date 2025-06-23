@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from ml_library.models import SVMRegressor, SVMClassifier
+from models import SVMRegressor, SVMClassifier
 
 
 class TestSVMModels:

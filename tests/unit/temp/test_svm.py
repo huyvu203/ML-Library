@@ -2,7 +2,7 @@
 """Test script for SVM models."""
 
 import numpy as np
-from ml_library.models import SVMRegressor, SVMClassifier
+from models import SVMRegressor, SVMClassifier
 
 def test_svm_regressor_init():
     """Test that SVMRegressor is initialized correctly."""

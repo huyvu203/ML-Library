@@ -15,7 +15,7 @@ from sklearn.metrics import (
     roc_auc_score,
 )
 
-from ..utils.logger import get_logger
+from utils.logger import get_logger
 
 logger = get_logger()
 

@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from ml_library.config.loader import ConfigLoader
+from config.loader import ConfigLoader
 
 
 class TestConfigLoader:
@@ -19,7 +19,7 @@ class TestConfigLoader:
         # Create a temporary YAML config file
         config = {"model": {"name": "test", "params": {"alpha": 0.1}}}
         
-        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False, mode="w") as tmp:
             yaml.dump(config, tmp)
             yaml_path = tmp.name
         
@@ -41,7 +41,7 @@ class TestConfigLoader:
         # Create a temporary JSON config file
         config = {"model": {"name": "test", "params": {"alpha": 0.1}}}
         
-        with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(suffix=".json", delete=False, mode="w") as tmp:
             json.dump(config, tmp)
             json_path = tmp.name
         
@@ -63,7 +63,7 @@ class TestConfigLoader:
         # Create a temporary YAML config file
         config = {"model": {"name": "test", "params": {"alpha": 0.1}}}
         
-        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False, mode="w") as tmp:
             yaml.dump(config, tmp)
             yaml_path = Path(tmp.name)
         
@@ -86,8 +86,8 @@ class TestConfigLoader:
     def test_load_invalid_yaml_file(self):
         """Test that loading an invalid YAML file raises YAMLError."""
         # Create a temporary file with invalid YAML content
-        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False) as tmp:
-            tmp.write(b"invalid: yaml: content: - [")
+        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False, mode="w") as tmp:
+            tmp.write("invalid: yaml: content: - [")
             yaml_path = tmp.name
         
         try:
@@ -106,8 +106,8 @@ class TestConfigLoader:
     def test_load_invalid_json_file(self):
         """Test that loading an invalid JSON file raises JSONDecodeError."""
         # Create a temporary file with invalid JSON content
-        with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as tmp:
-            tmp.write(b"{invalid json content")
+        with tempfile.NamedTemporaryFile(suffix=".json", delete=False, mode="w") as tmp:
+            tmp.write("{invalid json content")
             json_path = tmp.name
         
         try:
@@ -122,7 +122,7 @@ class TestConfigLoader:
         """Test auto-detection of YAML files."""
         config = {"model": {"name": "test"}}
         
-        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False, mode="w") as tmp:
             yaml.dump(config, tmp)
             yaml_path = tmp.name
         
@@ -137,7 +137,7 @@ class TestConfigLoader:
         """Test auto-detection of YML files."""
         config = {"model": {"name": "test"}}
         
-        with tempfile.NamedTemporaryFile(suffix=".yml", delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(suffix=".yml", delete=False, mode="w") as tmp:
             yaml.dump(config, tmp)
             yml_path = tmp.name
         
@@ -152,7 +152,7 @@ class TestConfigLoader:
         """Test auto-detection of JSON files."""
         config = {"model": {"name": "test"}}
         
-        with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(suffix=".json", delete=False, mode="w") as tmp:
             json.dump(config, tmp)
             json_path = tmp.name
         

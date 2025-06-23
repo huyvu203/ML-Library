@@ -4,7 +4,7 @@ from typing import Dict, List, Optional, Union, Any
 
 import numpy as np
 
-from ..utils.logger import get_logger
+from utils.logger import get_logger
 from .base import BaseModel
 
 logger = get_logger()

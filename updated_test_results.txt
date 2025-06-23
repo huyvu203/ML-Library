@@ -1,0 +1,650 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.6.0 -- /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/huy/projects/Production-Ready-ML-Library
+configfile: pyproject.toml
+testpaths: tests
+plugins: hypothesis-6.135.14, cov-3.0.0
+collecting ... collected 148 items
+
+tests/integration/test_pipeline.py::test_regression_pipeline PASSED      [  0%]
+tests/integration/test_pipeline.py::test_classification_pipeline PASSED  [  1%]
+tests/integration/test_pipeline.py::test_advanced_regression_pipeline[model0] PASSED [  2%]
+tests/integration/test_pipeline.py::test_advanced_regression_pipeline[model1] PASSED [  2%]
+tests/integration/test_pipeline.py::test_advanced_classification_pipeline[model0] PASSED [  3%]
+tests/integration/test_pipeline.py::test_advanced_classification_pipeline[model1] PASSED [  4%]
+tests/unit/test_base_model.py::TestBaseModel::test_initialization PASSED [  4%]
+tests/unit/test_base_model.py::TestBaseModel::test_check_is_fitted PASSED [  5%]
+tests/unit/test_base_model.py::TestBaseModel::test_fit PASSED            [  6%]
+tests/unit/test_base_model.py::TestBaseModel::test_predict PASSED        [  6%]
+tests/unit/test_base_model.py::TestBaseModel::test_save_and_load PASSED  [  7%]
+tests/unit/test_base_model.py::TestBaseModel::test_save_unfitted_model PASSED [  8%]
+tests/unit/test_base_model.py::TestBaseModel::test_load_nonexistent_file PASSED [  8%]
+tests/unit/test_base_model.py::TestBaseModel::test_load_wrong_class SKIPPED [  9%]
+tests/unit/test_base_model.py::TestBaseModel::test_get_params PASSED     [ 10%]
+tests/unit/test_config.py::test_load_yaml PASSED                         [ 10%]
+tests/unit/test_config.py::test_load_json PASSED                         [ 11%]
+tests/unit/test_config.py::test_load_method PASSED                       [ 12%]
+tests/unit/test_config.py::test_load_nonexistent_file PASSED             [ 12%]
+tests/unit/test_config.py::test_load_unsupported_extension PASSED        [ 13%]
+tests/unit/test_config.py::test_load_invalid_yaml PASSED                 [ 14%]
+tests/unit/test_config.py::test_load_invalid_json PASSED                 [ 14%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_yaml PASSED [ 15%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_json PASSED [ 16%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_yaml_with_path_object PASSED [ 16%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_nonexistent_yaml_file PASSED [ 17%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_invalid_yaml_file PASSED [ 18%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_nonexistent_json_file PASSED [ 18%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_invalid_json_file PASSED [ 19%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_auto_yaml PASSED [ 20%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_auto_yml PASSED [ 20%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_auto_json PASSED [ 21%]
+tests/unit/test_config_loader.py::TestConfigLoader::test_load_unsupported_extension PASSED [ 22%]
+tests/unit/test_knn_models.py::TestKNNModels::test_knn_regressor_init PASSED [ 22%]
+tests/unit/test_knn_models.py::TestKNNModels::test_knn_classifier_init PASSED [ 23%]
+tests/unit/test_knn_models.py::test_knn_regressor_get_params[3-uniform-auto] PASSED [ 24%]
+tests/unit/test_knn_models.py::test_knn_regressor_get_params[5-distance-ball_tree] PASSED [ 25%]
+tests/unit/test_knn_models.py::test_knn_regressor_get_params[10-uniform-kd_tree] PASSED [ 25%]
+tests/unit/test_knn_models.py::test_knn_classifier_get_params[3-uniform-auto] PASSED [ 26%]
+tests/unit/test_knn_models.py::test_knn_classifier_get_params[5-distance-ball_tree] PASSED [ 27%]
+tests/unit/test_knn_models.py::test_knn_classifier_get_params[10-uniform-kd_tree] PASSED [ 27%]
+tests/unit/test_knn_models.py::test_knn_regressor_fit_predict PASSED     [ 28%]
+tests/unit/test_knn_models.py::test_knn_classifier_fit_predict PASSED    [ 29%]
+tests/unit/test_knn_models.py::test_knn_regressor_not_fitted_error PASSED [ 29%]
+tests/unit/test_knn_models.py::test_knn_classifier_not_fitted_error PASSED [ 30%]
+tests/unit/test_knn_models.py::test_validate_data[KNNRegressor-kwargs0] PASSED [ 31%]
+tests/unit/test_knn_models.py::test_validate_data[KNNRegressor-kwargs1] PASSED [ 31%]
+tests/unit/test_knn_models.py::test_validate_data[KNNClassifier-kwargs2] PASSED [ 32%]
+tests/unit/test_knn_models.py::test_validate_data[KNNClassifier-kwargs3] PASSED [ 33%]
+tests/unit/test_metrics.py::TestBaseMetrics::test_base_metrics_evaluate_not_implemented PASSED [ 33%]
+tests/unit/test_metrics.py::TestRegressionMetrics::test_initialization PASSED [ 34%]
+tests/unit/test_metrics.py::TestRegressionMetrics::test_evaluate PASSED  [ 35%]
+tests/unit/test_metrics.py::TestRegressionMetrics::test_evaluate_with_lists PASSED [ 35%]
+tests/unit/test_metrics.py::TestRegressionMetrics::test_evaluate_perfect_prediction PASSED [ 36%]
+tests/unit/test_metrics.py::TestClassificationMetrics::test_initialization_default PASSED [ 37%]
+tests/unit/test_metrics.py::TestClassificationMetrics::test_initialization_custom_average PASSED [ 37%]
+tests/unit/test_metrics.py::TestClassificationMetrics::test_evaluate_binary PASSED [ 38%]
+tests/unit/test_metrics.py::TestClassificationMetrics::test_evaluate_with_probabilities_binary PASSED [ 39%]
+tests/unit/test_metrics.py::TestClassificationMetrics::test_evaluate_multiclass PASSED [ 39%]
+tests/unit/test_metrics.py::TestClassificationMetrics::test_evaluate_with_probabilities_multiclass PASSED [ 40%]
+tests/unit/test_metrics.py::TestClassificationMetrics::test_evaluate_with_invalid_probabilities PASSED [ 41%]
+tests/unit/test_models.py::test_linear_regression_initialization PASSED  [ 41%]
+tests/unit/test_models.py::test_linear_regression_fit_predict PASSED     [ 42%]
+tests/unit/test_models.py::test_linear_regression_score PASSED           [ 43%]
+tests/unit/test_models.py::test_linear_regression_not_fitted_error PASSED [ 43%]
+tests/unit/test_models.py::test_linear_regression_get_params PASSED      [ 44%]
+tests/unit/test_models.py::test_logistic_regression_initialization PASSED [ 45%]
+tests/unit/test_models.py::test_logistic_regression_fit_predict PASSED   [ 45%]
+tests/unit/test_models.py::test_logistic_regression_predict_proba PASSED [ 46%]
+tests/unit/test_models.py::test_logistic_regression_score PASSED         [ 47%]
+tests/unit/test_models.py::test_logistic_regression_not_fitted_error PASSED [ 47%]
+tests/unit/test_models.py::test_logistic_regression_get_params PASSED    [ 48%]
+tests/unit/test_predictor.py::TestPredictor::test_initialization PASSED  [ 49%]
+tests/unit/test_predictor.py::TestPredictor::test_initialization_with_unfitted_model PASSED [ 50%]
+tests/unit/test_predictor.py::TestPredictor::test_initialization_with_missing_check_method PASSED [ 50%]
+tests/unit/test_predictor.py::TestPredictor::test_predict PASSED         [ 51%]
+tests/unit/test_predictor.py::TestPredictor::test_predict_with_probabilities PASSED [ 52%]
+tests/unit/test_predictor.py::TestPredictor::test_predict_with_probabilities_handling_attribute_error PASSED [ 52%]
+tests/unit/test_predictor.py::TestPredictor::test_predict_with_probabilities_handling_not_implemented_error PASSED [ 53%]
+tests/unit/test_predictor.py::TestPredictor::test_predict_batch PASSED   [ 54%]
+tests/unit/test_predictor.py::TestPredictor::test_predict_batch_with_probabilities PASSED [ 54%]
+tests/unit/test_predictor.py::TestPredictor::test_save_and_load_predictions SKIPPED [ 55%]
+tests/unit/test_predictor.py::TestPredictor::test_save_predictions_with_probabilities SKIPPED [ 56%]
+tests/unit/test_predictor.py::TestPredictor::test_load_predictions_nonexistent_file PASSED [ 56%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_initialization PASSED [ 57%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_initialization_with_unfitted_model PASSED [ 58%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_initialization_with_missing_check_method PASSED [ 58%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_predict PASSED [ 59%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_predict_with_probabilities FAILED [ 60%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_predict_with_probabilities_handling_attribute_error FAILED [ 60%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_predict_with_probabilities_handling_not_implemented_error FAILED [ 61%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_predict_batch PASSED [ 62%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_predict_batch_with_probabilities FAILED [ 62%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_save_and_load_predictions FAILED [ 63%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_save_predictions_with_probabilities FAILED [ 64%]
+tests/unit/test_predictor_complete.py::TestPredictor::test_load_predictions_nonexistent_file PASSED [ 64%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_initialization PASSED [ 65%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_fit PASSED    [ 66%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_transform PASSED [ 66%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_fit_transform PASSED [ 67%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_inverse_transform PASSED [ 68%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_with_mean_false PASSED [ 68%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_with_std_false PASSED [ 69%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_1d_array PASSED [ 70%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_not_fitted_error PASSED [ 70%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_initialization PASSED [ 71%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_fit FAILED      [ 72%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_transform PASSED [ 72%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_fit_transform PASSED [ 73%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_inverse_transform PASSED [ 74%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_custom_feature_range PASSED [ 75%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_not_fitted_error PASSED [ 75%]
+tests/unit/test_svm_imports.py::test_svm_imports PASSED                  [ 76%]
+tests/unit/test_svm_models.py::TestSVMModels::test_svm_regressor_init PASSED [ 77%]
+tests/unit/test_svm_models.py::TestSVMModels::test_svm_classifier_init PASSED [ 77%]
+tests/unit/test_svm_models.py::test_svm_regressor_get_params[linear-1.0-scale] PASSED [ 78%]
+tests/unit/test_svm_models.py::test_svm_regressor_get_params[rbf-0.5-auto] PASSED [ 79%]
+tests/unit/test_svm_models.py::test_svm_regressor_get_params[poly-2.0-0.1] PASSED [ 79%]
+tests/unit/test_svm_models.py::test_svm_classifier_get_params[linear-1.0-scale] PASSED [ 80%]
+tests/unit/test_svm_models.py::test_svm_classifier_get_params[rbf-0.5-auto] PASSED [ 81%]
+tests/unit/test_svm_models.py::test_svm_classifier_get_params[poly-2.0-0.1] PASSED [ 81%]
+tests/unit/test_svm_models.py::test_svm_regressor_fit_predict PASSED     [ 82%]
+tests/unit/test_svm_models.py::test_svm_classifier_fit_predict PASSED    [ 83%]
+tests/unit/test_svm_models.py::test_svm_regressor_not_fitted_error PASSED [ 83%]
+tests/unit/test_svm_models.py::test_svm_classifier_not_fitted_error PASSED [ 84%]
+tests/unit/test_svm_models.py::test_svm_classifier_probability_error PASSED [ 85%]
+tests/unit/test_tree_models.py::TestTreeModels::test_decision_tree_regressor_init PASSED [ 85%]
+tests/unit/test_tree_models.py::TestTreeModels::test_decision_tree_classifier_init PASSED [ 86%]
+tests/unit/test_tree_models.py::TestTreeModels::test_random_forest_regressor_init PASSED [ 87%]
+tests/unit/test_tree_models.py::TestTreeModels::test_random_forest_classifier_init PASSED [ 87%]
+tests/unit/test_tree_models.py::TestTreeModels::test_xgboost_regressor_init PASSED [ 88%]
+tests/unit/test_tree_models.py::TestTreeModels::test_xgboost_classifier_init PASSED [ 89%]
+tests/unit/test_tree_models.py::test_regressor_fit_predict[DecisionTreeRegressor-model_params0] PASSED [ 89%]
+tests/unit/test_tree_models.py::test_regressor_fit_predict[RandomForestRegressor-model_params1] PASSED [ 90%]
+tests/unit/test_tree_models.py::test_regressor_fit_predict[XGBoostRegressor-model_params2] PASSED [ 91%]
+tests/unit/test_tree_models.py::test_classifier_fit_predict[DecisionTreeClassifier-model_params0] PASSED [ 91%]
+tests/unit/test_tree_models.py::test_classifier_fit_predict[RandomForestClassifier-model_params1] PASSED [ 92%]
+tests/unit/test_tree_models.py::test_classifier_fit_predict[XGBoostClassifier-model_params2] PASSED [ 93%]
+tests/unit/temp/test_imports.py::test_base_imports PASSED                [ 93%]
+tests/unit/temp/test_imports.py::test_linear_models PASSED               [ 94%]
+tests/unit/temp/test_imports.py::test_tree_models PASSED                 [ 95%]
+tests/unit/temp/test_imports.py::test_boosting_models PASSED             [ 95%]
+tests/unit/temp/test_imports.py::test_svm_models PASSED                  [ 96%]
+tests/unit/temp/test_imports.py::test_knn_models PASSED                  [ 97%]
+tests/unit/temp/test_svm.py::test_svm_regressor_init PASSED              [ 97%]
+tests/unit/temp/test_svm.py::test_svm_classifier_init PASSED             [ 98%]
+tests/unit/temp/test_svm.py::test_svm_regressor_fit_predict PASSED       [ 99%]
+tests/unit/temp/test_svm.py::test_svm_classifier_fit_predict PASSED      [100%]
+
+=================================== FAILURES ===================================
+________________ TestPredictor.test_predict_with_probabilities _________________
+
+self = <test_predictor_complete.TestPredictor object at 0x7e5d3c5359a0>
+
+    def test_predict_with_probabilities(self):
+        """Test the predict method with probabilities."""
+        # Create a mock model for testing
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.return_value = np.array([1, 0, 1])
+>       model.predict_proba.return_value = np.array([
+            [0.2, 0.8],
+            [0.7, 0.3],
+            [0.1, 0.9]
+        ])
+
+tests/unit/test_predictor_complete.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock spec='MockModel' id='138938908328400'>, name = 'predict_proba'
+
+    def __getattr__(self, name):
+        if name in {'_mock_methods', '_mock_unsafe'}:
+            raise AttributeError(name)
+        elif self._mock_methods is not None:
+            if name not in self._mock_methods or name in _all_magics:
+>               raise AttributeError("Mock object has no attribute %r" % name)
+E               AttributeError: Mock object has no attribute 'predict_proba'
+
+/usr/lib/python3.12/unittest/mock.py:658: AttributeError
+____ TestPredictor.test_predict_with_probabilities_handling_attribute_error ____
+
+self = <test_predictor_complete.TestPredictor object at 0x7e5d3c5351c0>
+
+    def test_predict_with_probabilities_handling_attribute_error(self):
+        """Test handling of AttributeError when requesting probabilities."""
+        # Create a mock model that raises AttributeError
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.return_value = np.array([1, 0, 1])
+    
+        # Make predict_proba raise AttributeError
+>       model.predict_proba.side_effect = AttributeError("'MockModel' has no attribute 'predict_proba'")
+
+tests/unit/test_predictor_complete.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock spec='MockModel' id='138938908332672'>, name = 'predict_proba'
+
+    def __getattr__(self, name):
+        if name in {'_mock_methods', '_mock_unsafe'}:
+            raise AttributeError(name)
+        elif self._mock_methods is not None:
+            if name not in self._mock_methods or name in _all_magics:
+>               raise AttributeError("Mock object has no attribute %r" % name)
+E               AttributeError: Mock object has no attribute 'predict_proba'
+
+/usr/lib/python3.12/unittest/mock.py:658: AttributeError
+_ TestPredictor.test_predict_with_probabilities_handling_not_implemented_error _
+
+self = <test_predictor_complete.TestPredictor object at 0x7e5d3c536ba0>
+
+    def test_predict_with_probabilities_handling_not_implemented_error(self):
+        """Test handling of NotImplementedError when requesting probabilities."""
+        # Create a mock model that raises NotImplementedError
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.return_value = np.array([1, 0, 1])
+    
+        # Make predict_proba raise NotImplementedError
+>       model.predict_proba.side_effect = NotImplementedError("Probabilities not implemented")
+
+tests/unit/test_predictor_complete.py:130: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock spec='MockModel' id='138938908337808'>, name = 'predict_proba'
+
+    def __getattr__(self, name):
+        if name in {'_mock_methods', '_mock_unsafe'}:
+            raise AttributeError(name)
+        elif self._mock_methods is not None:
+            if name not in self._mock_methods or name in _all_magics:
+>               raise AttributeError("Mock object has no attribute %r" % name)
+E               AttributeError: Mock object has no attribute 'predict_proba'
+
+/usr/lib/python3.12/unittest/mock.py:658: AttributeError
+_____________ TestPredictor.test_predict_batch_with_probabilities ______________
+
+self = <test_predictor_complete.TestPredictor object at 0x7e5d3c536de0>
+
+    def test_predict_batch_with_probabilities(self):
+        """Test the predict_batch method with probabilities."""
+        # Create a mock model for testing
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.side_effect = [
+            np.array([1, 0]),
+            np.array([1, 1])
+        ]
+>       model.predict_proba.side_effect = [
+            np.array([[0.2, 0.8], [0.7, 0.3]]),
+            np.array([[0.1, 0.9], [0.3, 0.7]])
+        ]
+
+tests/unit/test_predictor_complete.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock spec='MockModel' id='138938908339008'>, name = 'predict_proba'
+
+    def __getattr__(self, name):
+        if name in {'_mock_methods', '_mock_unsafe'}:
+            raise AttributeError(name)
+        elif self._mock_methods is not None:
+            if name not in self._mock_methods or name in _all_magics:
+>               raise AttributeError("Mock object has no attribute %r" % name)
+E               AttributeError: Mock object has no attribute 'predict_proba'
+
+/usr/lib/python3.12/unittest/mock.py:658: AttributeError
+_________________ TestPredictor.test_save_and_load_predictions _________________
+
+self = <test_predictor_complete.TestPredictor object at 0x7e5d3c536f00>
+
+    def test_save_and_load_predictions(self):
+        """Test saving and loading predictions."""
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.return_value = np.array([1, 2, 3])
+    
+        predictor = Predictor(model)
+        X = [[1, 2], [3, 4], [5, 6]]
+    
+        # Get predictions
+        predictions = predictor.predict(X)
+    
+        # Create temporary file
+        with tempfile.NamedTemporaryFile(delete=False) as tmp:
+            temp_path = tmp.name
+    
+        try:
+            # Save predictions
+            predictor.save_predictions(predictions, temp_path)
+            assert os.path.exists(temp_path)
+    
+            # Load predictions
+>           loaded_predictions = predictor.load_predictions(temp_path)
+
+tests/unit/test_predictor_complete.py:227: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+inference/predictor.py:169: in load_predictions
+    return np.load(file_path, allow_pickle=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+file = PosixPath('/tmp/tmpf8usolaw'), mmap_mode = None, allow_pickle = True
+fix_imports = True, encoding = 'ASCII'
+
+    @set_module('numpy')
+    def load(file, mmap_mode=None, allow_pickle=False, fix_imports=True,
+             encoding='ASCII', *, max_header_size=format._MAX_HEADER_SIZE):
+        """
+        Load arrays or pickled objects from ``.npy``, ``.npz`` or pickled files.
+    
+        .. warning:: Loading files that contain object arrays uses the ``pickle``
+                     module, which is not secure against erroneous or maliciously
+                     constructed data. Consider passing ``allow_pickle=False`` to
+                     load data that is known not to contain object arrays for the
+                     safer handling of untrusted sources.
+    
+        Parameters
+        ----------
+        file : file-like object, string, or pathlib.Path
+            The file to read. File-like objects must support the
+            ``seek()`` and ``read()`` methods and must always
+            be opened in binary mode.  Pickled files require that the
+            file-like object support the ``readline()`` method as well.
+        mmap_mode : {None, 'r+', 'r', 'w+', 'c'}, optional
+            If not None, then memory-map the file, using the given mode (see
+            `numpy.memmap` for a detailed description of the modes).  A
+            memory-mapped array is kept on disk. However, it can be accessed
+            and sliced like any ndarray.  Memory mapping is especially useful
+            for accessing small fragments of large files without reading the
+            entire file into memory.
+        allow_pickle : bool, optional
+            Allow loading pickled object arrays stored in npy files. Reasons for
+            disallowing pickles include security, as loading pickled data can
+            execute arbitrary code. If pickles are disallowed, loading object
+            arrays will fail. Default: False
+    
+            .. versionchanged:: 1.16.3
+                Made default False in response to CVE-2019-6446.
+    
+        fix_imports : bool, optional
+            Only useful when loading Python 2 generated pickled files on Python 3,
+            which includes npy/npz files containing object arrays. If `fix_imports`
+            is True, pickle will try to map the old Python 2 names to the new names
+            used in Python 3.
+        encoding : str, optional
+            What encoding to use when reading Python 2 strings. Only useful when
+            loading Python 2 generated pickled files in Python 3, which includes
+            npy/npz files containing object arrays. Values other than 'latin1',
+            'ASCII', and 'bytes' are not allowed, as they can corrupt numerical
+            data. Default: 'ASCII'
+        max_header_size : int, optional
+            Maximum allowed size of the header.  Large headers may not be safe
+            to load securely and thus require explicitly passing a larger value.
+            See :py:func:`ast.literal_eval()` for details.
+            This option is ignored when `allow_pickle` is passed.  In that case
+            the file is by definition trusted and the limit is unnecessary.
+    
+        Returns
+        -------
+        result : array, tuple, dict, etc.
+            Data stored in the file. For ``.npz`` files, the returned instance
+            of NpzFile class must be closed to avoid leaking file descriptors.
+    
+        Raises
+        ------
+        OSError
+            If the input file does not exist or cannot be read.
+        UnpicklingError
+            If ``allow_pickle=True``, but the file cannot be loaded as a pickle.
+        ValueError
+            The file contains an object array, but ``allow_pickle=False`` given.
+        EOFError
+            When calling ``np.load`` multiple times on the same file handle,
+            if all data has already been read
+    
+        See Also
+        --------
+        save, savez, savez_compressed, loadtxt
+        memmap : Create a memory-map to an array stored in a file on disk.
+        lib.format.open_memmap : Create or load a memory-mapped ``.npy`` file.
+    
+        Notes
+        -----
+        - If the file contains pickle data, then whatever object is stored
+          in the pickle is returned.
+        - If the file is a ``.npy`` file, then a single array is returned.
+        - If the file is a ``.npz`` file, then a dictionary-like object is
+          returned, containing ``{filename: array}`` key-value pairs, one for
+          each file in the archive.
+        - If the file is a ``.npz`` file, the returned value supports the
+          context manager protocol in a similar fashion to the open function::
+    
+            with load('foo.npz') as data:
+                a = data['a']
+    
+          The underlying file descriptor is closed when exiting the 'with'
+          block.
+    
+        Examples
+        --------
+        Store data to disk, and load it again:
+    
+        >>> np.save('/tmp/123', np.array([[1, 2, 3], [4, 5, 6]]))
+        >>> np.load('/tmp/123.npy')
+        array([[1, 2, 3],
+               [4, 5, 6]])
+    
+        Store compressed data to disk, and load it again:
+    
+        >>> a=np.array([[1, 2, 3], [4, 5, 6]])
+        >>> b=np.array([1, 2])
+        >>> np.savez('/tmp/123.npz', a=a, b=b)
+        >>> data = np.load('/tmp/123.npz')
+        >>> data['a']
+        array([[1, 2, 3],
+               [4, 5, 6]])
+        >>> data['b']
+        array([1, 2])
+        >>> data.close()
+    
+        Mem-map the stored array, and then access the second row
+        directly from disk:
+    
+        >>> X = np.load('/tmp/123.npy', mmap_mode='r')
+        >>> X[1, :]
+        memmap([4, 5, 6])
+    
+        """
+        if encoding not in ('ASCII', 'latin1', 'bytes'):
+            # The 'encoding' value for pickle also affects what encoding
+            # the serialized binary data of NumPy arrays is loaded
+            # in. Pickle does not pass on the encoding information to
+            # NumPy. The unpickling code in numpy.core.multiarray is
+            # written to assume that unicode data appearing where binary
+            # should be is in 'latin1'. 'bytes' is also safe, as is 'ASCII'.
+            #
+            # Other encoding values can corrupt binary data, and we
+            # purposefully disallow them. For the same reason, the errors=
+            # argument is not exposed, as values other than 'strict'
+            # result can similarly silently corrupt numerical data.
+            raise ValueError("encoding must be 'ASCII', 'latin1', or 'bytes'")
+    
+        pickle_kwargs = dict(encoding=encoding, fix_imports=fix_imports)
+    
+        with contextlib.ExitStack() as stack:
+            if hasattr(file, 'read'):
+                fid = file
+                own_fid = False
+            else:
+                fid = stack.enter_context(open(os_fspath(file), "rb"))
+                own_fid = True
+    
+            # Code to distinguish from NumPy binary files and pickles.
+            _ZIP_PREFIX = b'PK\x03\x04'
+            _ZIP_SUFFIX = b'PK\x05\x06' # empty zip files start with this
+            N = len(format.MAGIC_PREFIX)
+            magic = fid.read(N)
+            if not magic:
+>               raise EOFError("No data left in file")
+E               EOFError: No data left in file
+
+../../.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/numpy/lib/npyio.py:436: EOFError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 10:26:14 | DEBUG    | inference.predictor:__init__:40 | Initialized predictor with model MockModel
+2025-06-23 10:26:14 | DEBUG    | inference.predictor:predict:61 | Making predictions on 3 samples
+2025-06-23 10:26:14 | INFO     | inference.predictor:save_predictions:145 | Saving predictions to /tmp/tmpf8usolaw
+2025-06-23 10:26:14 | INFO     | inference.predictor:load_predictions:166 | Loading predictions from /tmp/tmpf8usolaw
+____________ TestPredictor.test_save_predictions_with_probabilities ____________
+
+self = <test_predictor_complete.TestPredictor object at 0x7e5d3c537020>
+
+    def test_save_predictions_with_probabilities(self):
+        """Test saving predictions with probabilities."""
+        model = Mock(spec=BaseModel)
+        model.check_is_fitted.return_value = None
+        model.predict.return_value = np.array([1, 0, 1])
+>       model.predict_proba.return_value = np.array([
+            [0.2, 0.8],
+            [0.7, 0.3],
+            [0.1, 0.9]
+        ])
+
+tests/unit/test_predictor_complete.py:241: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Mock spec='MockModel' id='138938908282944'>, name = 'predict_proba'
+
+    def __getattr__(self, name):
+        if name in {'_mock_methods', '_mock_unsafe'}:
+            raise AttributeError(name)
+        elif self._mock_methods is not None:
+            if name not in self._mock_methods or name in _all_magics:
+>               raise AttributeError("Mock object has no attribute %r" % name)
+E               AttributeError: Mock object has no attribute 'predict_proba'
+
+/usr/lib/python3.12/unittest/mock.py:658: AttributeError
+__________________________ TestMinMaxScaler.test_fit ___________________________
+
+self = <test_preprocessing.TestMinMaxScaler object at 0x7e5d3c5364b0>
+
+    def test_fit(self):
+        """Test fitting of MinMaxScaler."""
+        X = np.array([[1, 2], [3, 4], [5, 6]])
+        scaler = MinMaxScaler()
+        fitted_scaler = scaler.fit(X)
+    
+        assert fitted_scaler is scaler  # Check if it returns self
+        assert scaler._fitted is True
+    
+        # Check computed statistics
+>       np.testing.assert_almost_equal(scaler.min_, np.array([1, 2]))
+
+tests/unit/test_preprocessing.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+/usr/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = (<function assert_array_almost_equal.<locals>.compare at 0x7e5d3c480180>, array([-0.25, -0.5 ]), array([1, 2]))
+kwds = {'err_msg': '', 'header': 'Arrays are not almost equal to 7 decimals', 'precision': 7, 'verbose': True}
+
+    @wraps(func)
+    def inner(*args, **kwds):
+        with self._recreate_cm():
+>           return func(*args, **kwds)
+E           AssertionError: 
+E           Arrays are not almost equal to 7 decimals
+E           
+E           Mismatched elements: 2 / 2 (100%)
+E           Max absolute difference: 2.5
+E           Max relative difference: 1.25
+E            x: array([-0.25, -0.5 ])
+E            y: array([1, 2])
+
+/usr/lib/python3.12/contextlib.py:81: AssertionError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 10:26:15 | DEBUG    | preprocessing.transformers:fit:188 | MinMaxScaler fitted
+=============================== warnings summary ===============================
+../../.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_configure_node uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_configure_node(self, node):
+
+../../.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_testnodedown uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_testnodedown(self, node, error):
+
+tests/unit/test_tree_models.py::test_classifier_fit_predict[XGBoostClassifier-model_params2]
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [10:26:15] WARNING: /workspace/src/learner.cc:740: 
+  Parameters: { "use_label_encoder" } are not used.
+  
+    warnings.warn(smsg, UserWarning)
+
+tests/unit/temp/test_imports.py::test_base_imports
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_base_imports returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_linear_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_linear_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_tree_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_tree_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_boosting_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_boosting_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_svm_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_svm_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_knn_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_knn_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_regressor_init
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_regressor_init returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_classifier_init
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_classifier_init returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_regressor_fit_predict
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_regressor_fit_predict returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_classifier_fit_predict
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_classifier_fit_predict returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform linux, python 3.12.3-final-0 -----------
+Name                            Stmts   Miss  Cover   Missing
+-------------------------------------------------------------
+config/__init__.py                  2      0   100%
+config/loader.py                   40      0   100%
+evaluation/__init__.py              2      0   100%
+evaluation/metrics.py              48      0   100%
+inference/__init__.py               2      0   100%
+inference/predictor.py             72     11    85%   183-204
+models/__init__.py                  9      0   100%
+models/base.py                     43      3    93%   53, 65, 105
+models/classification.py          104     27    74%   75, 94, 112-113, 131-136, 139-144, 158-161, 163-166, 180-181, 197, 200, 237, 267, 270
+models/knn_models.py               99      9    91%   65-67, 136, 227-229, 300, 316
+models/random_forest.py           112     15    87%   65-67, 128, 144, 157, 177, 235-237, 299, 314, 330, 343, 363
+models/regression.py               75     22    71%   72-73, 88-118, 125-126, 145, 162, 193, 196
+models/svm_models.py              106     11    90%   69-71, 142, 176, 242-244, 318, 340, 375
+models/tree_models.py             110     15    86%   61-63, 122, 138, 151, 170, 224-226, 286, 301, 317, 330, 349
+models/xgboost_models.py          114     15    87%   69-71, 133, 149, 162, 183, 245-247, 312, 327, 343, 356, 377
+preprocessing/__init__.py           2      0   100%
+preprocessing/transformers.py     103      7    93%   76, 112, 132, 207, 241, 258, 264
+training/__init__.py                2      0   100%
+training/trainer.py                45      3    93%   79-80, 130
+utils/__init__.py                   2      0   100%
+utils/logger.py                    13      1    92%   42
+-------------------------------------------------------------
+TOTAL                            1105    139    87%
+Coverage XML written to file coverage.xml
+
+=========================== short test summary info ============================
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_predict_with_probabilities
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_predict_with_probabilities_handling_attribute_error
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_predict_with_probabilities_handling_not_implemented_error
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_predict_batch_with_probabilities
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_save_and_load_predictions
+FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_save_predictions_with_probabilities
+FAILED tests/unit/test_preprocessing.py::TestMinMaxScaler::test_fit - Asserti...
+============ 7 failed, 138 passed, 3 skipped, 13 warnings in 5.30s =============

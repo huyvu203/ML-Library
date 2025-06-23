@@ -1,6 +1,6 @@
 """Test SVM model imports and basic initialization."""
 
-from ml_library.models import SVMRegressor, SVMClassifier
+from models import SVMRegressor, SVMClassifier
 
 def test_svm_imports():
     """Test that SVM models can be imported."""

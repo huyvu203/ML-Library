@@ -4,8 +4,8 @@ from typing import Any, Dict, Optional, Tuple, Union
 
 import numpy as np
 
-from ..models.base import BaseModel
-from ..utils.logger import get_logger
+from models.base import BaseModel
+from utils.logger import get_logger
 
 logger = get_logger()
 

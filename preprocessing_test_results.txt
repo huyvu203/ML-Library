@@ -1,0 +1,118 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.6.0 -- /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/huy/projects/Production-Ready-ML-Library
+configfile: pyproject.toml
+plugins: hypothesis-6.135.14, cov-3.0.0
+collecting ... collected 16 items
+
+tests/unit/test_preprocessing.py::TestStandardScaler::test_initialization PASSED [  6%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_fit PASSED    [ 12%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_transform PASSED [ 18%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_fit_transform PASSED [ 25%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_inverse_transform PASSED [ 31%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_with_mean_false PASSED [ 37%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_with_std_false PASSED [ 43%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_1d_array PASSED [ 50%]
+tests/unit/test_preprocessing.py::TestStandardScaler::test_not_fitted_error PASSED [ 56%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_initialization PASSED [ 62%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_fit FAILED      [ 68%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_transform PASSED [ 75%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_fit_transform PASSED [ 81%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_inverse_transform PASSED [ 87%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_custom_feature_range PASSED [ 93%]
+tests/unit/test_preprocessing.py::TestMinMaxScaler::test_not_fitted_error PASSED [100%]
+
+=================================== FAILURES ===================================
+__________________________ TestMinMaxScaler.test_fit ___________________________
+
+self = <test_preprocessing.TestMinMaxScaler object at 0x7bc155d73200>
+
+    def test_fit(self):
+        """Test fitting of MinMaxScaler."""
+        X = np.array([[1, 2], [3, 4], [5, 6]])
+        scaler = MinMaxScaler()
+        fitted_scaler = scaler.fit(X)
+    
+        assert fitted_scaler is scaler  # Check if it returns self
+        assert scaler._fitted is True
+    
+        # Check computed statistics
+>       np.testing.assert_almost_equal(scaler.min_, np.array([1, 2]))
+
+tests/unit/test_preprocessing.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+/usr/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = (<function assert_array_almost_equal.<locals>.compare at 0x7bc155e0d4e0>, array([-0.25, -0.5 ]), array([1, 2]))
+kwds = {'err_msg': '', 'header': 'Arrays are not almost equal to 7 decimals', 'precision': 7, 'verbose': True}
+
+    @wraps(func)
+    def inner(*args, **kwds):
+        with self._recreate_cm():
+>           return func(*args, **kwds)
+E           AssertionError: 
+E           Arrays are not almost equal to 7 decimals
+E           
+E           Mismatched elements: 2 / 2 (100%)
+E           Max absolute difference: 2.5
+E           Max relative difference: 1.25
+E            x: array([-0.25, -0.5 ])
+E            y: array([1, 2])
+
+/usr/lib/python3.12/contextlib.py:81: AssertionError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 10:25:37 | DEBUG    | preprocessing.transformers:fit:188 | MinMaxScaler fitted
+=============================== warnings summary ===============================
+../../.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_configure_node uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_configure_node(self, node):
+
+../../.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_testnodedown uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_testnodedown(self, node, error):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform linux, python 3.12.3-final-0 -----------
+Name                            Stmts   Miss  Cover   Missing
+-------------------------------------------------------------
+config/__init__.py                  2      2     0%   3-5
+config/loader.py                   40     40     0%   3-90
+evaluation/__init__.py              2      2     0%   3-5
+evaluation/metrics.py              48     48     0%   3-162
+inference/__init__.py               2      2     0%   3-5
+inference/predictor.py             72     72     0%   3-204
+models/__init__.py                  9      0   100%
+models/base.py                     43     25    42%   27-29, 37-40, 53, 65, 73-81, 96-110, 118
+models/classification.py          104     90    13%   23-24, 55-75, 87-185, 196-209, 220-224, 236-240, 248, 266-272
+models/knn_models.py               99     79    20%   42-67, 82-108, 119-123, 135-141, 149, 168-171, 203-229, 244-273, 284-288, 299-303, 315-321, 329, 348-351
+models/random_forest.py           112     92    18%   42-67, 82-116, 127-131, 143-149, 157, 176-179, 211-237, 252-287, 298-302, 313-317, 329-335, 343, 362-365
+models/regression.py               75     63    16%   36-48, 60-130, 141-149, 161-168, 176, 192-198
+models/svm_models.py              106     86    19%   44-71, 86-114, 125-129, 141-147, 155, 175-178, 214-244, 259-291, 302-306, 317-327, 339-345, 353, 374-377
+models/tree_models.py             110     90    18%   40-63, 78-110, 121-125, 137-143, 151, 169-172, 202-226, 241-274, 285-289, 300-304, 316-322, 330, 348-351
+models/xgboost_models.py          114     94    18%   44-71, 86-121, 132-136, 148-154, 162, 182-185, 219-247, 262-300, 311-315, 326-330, 342-348, 356, 376-379
+preprocessing/__init__.py           2      0   100%
+preprocessing/transformers.py     103      7    93%   76, 112, 132, 207, 241, 258, 264
+training/__init__.py                2      2     0%   3-5
+training/trainer.py                45     45     0%   3-147
+utils/__init__.py                   2      0   100%
+utils/logger.py                    13      1    92%   42
+-------------------------------------------------------------
+TOTAL                            1105    840    24%
+Coverage XML written to file coverage.xml
+
+=========================== short test summary info ============================
+FAILED tests/unit/test_preprocessing.py::TestMinMaxScaler::test_fit - Asserti...
+=================== 1 failed, 15 passed, 2 warnings in 0.71s ===================

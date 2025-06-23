@@ -6,8 +6,8 @@ import pytest
 import tempfile
 from unittest.mock import Mock, patch
 
-from ml_library.inference.predictor import Predictor
-from ml_library.models.base import BaseModel
+from inference.predictor import Predictor
+from models.base import BaseModel
 
 
 class TestPredictor:

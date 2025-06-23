@@ -11,8 +11,9 @@ parent_dir = Path(__file__).parent.parent
 sys.path.insert(0, str(parent_dir))
 
 # Import your library here for fixtures
-from ml_library.models import LinearRegression, LogisticRegression
-from ml_library.utils.logger import setup_logger
+from models.regression import LinearRegression
+from models.classification import LogisticRegression
+from utils.logger import setup_logger
 
 # Configure logging for tests
 setup_logger(level="DEBUG")

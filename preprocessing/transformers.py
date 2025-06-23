@@ -4,7 +4,7 @@ from typing import Optional, Union
 
 import numpy as np
 
-from ..utils.logger import get_logger
+from utils.logger import get_logger
 
 logger = get_logger()
 
@@ -130,6 +130,9 @@ class StandardScaler:
         """
         if not isinstance(X, np.ndarray):
             X = np.array(X, dtype=np.float64)
+        else:
+            # Ensure float64 dtype even if it's already an ndarray
+            X = X.astype(np.float64)
             
         if X.ndim == 1:
             X = X.reshape(-1, 1)
@@ -253,6 +256,9 @@ class MinMaxScaler:
         """
         if not isinstance(X, np.ndarray):
             X = np.array(X, dtype=np.float64)
+        else:
+            # Ensure float64 dtype even if it's already an ndarray
+            X = X.astype(np.float64)
             
         if X.ndim == 1:
             X = X.reshape(-1, 1)

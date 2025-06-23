@@ -6,7 +6,7 @@ import os
 import pytest
 import yaml
 
-from ml_library.config import ConfigLoader
+from config import ConfigLoader
 
 
 def test_load_yaml(temp_config_path):

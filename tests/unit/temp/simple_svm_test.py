@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Test script for SVM models."""
 
-from ml_library.models import SVMRegressor, SVMClassifier
+from models import SVMRegressor, SVMClassifier
 
 def test_init():
     """Test that SVM models are initialized correctly."""
