@@ -4,7 +4,7 @@
 def test_base_imports():
     """Test importing base models."""
     try:
-        from ml_library.models.base import BaseModel
+        from models.base import BaseModel
         print("✅ BaseModel imported successfully")
         return True
     except Exception as e:
@@ -14,7 +14,7 @@ def test_base_imports():
 def test_linear_models():
     """Test importing linear models."""
     try:
-        from ml_library.models import LinearRegression, LogisticRegression
+        from models import LinearRegression, LogisticRegression
         print("✅ Linear models imported successfully")
         return True
     except Exception as e:
@@ -24,7 +24,7 @@ def test_linear_models():
 def test_tree_models():
     """Test importing tree-based models."""
     try:
-        from ml_library.models import (
+        from models import (
             DecisionTreeRegressor, DecisionTreeClassifier,
             RandomForestRegressor, RandomForestClassifier
         )
@@ -37,7 +37,7 @@ def test_tree_models():
 def test_boosting_models():
     """Test importing boosting models."""
     try:
-        from ml_library.models import XGBoostRegressor, XGBoostClassifier
+        from models import XGBoostRegressor, XGBoostClassifier
         print("✅ XGBoost models imported successfully")
         return True
     except Exception as e:
@@ -47,7 +47,7 @@ def test_boosting_models():
 def test_svm_models():
     """Test importing SVM models."""
     try:
-        from ml_library.models import SVMRegressor, SVMClassifier
+        from models import SVMRegressor, SVMClassifier
         print("✅ SVM models imported successfully")
         return True
     except Exception as e:
@@ -57,7 +57,7 @@ def test_svm_models():
 def test_knn_models():
     """Test importing KNN models."""
     try:
-        from ml_library.models import KNNRegressor, KNNClassifier
+        from models import KNNRegressor, KNNClassifier
         print("✅ KNN models imported successfully")
         return True
     except Exception as e:
