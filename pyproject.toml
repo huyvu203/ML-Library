@@ -19,13 +19,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 packages = [
-    {include = "config"},
-    {include = "models"},
-    {include = "training"},
-    {include = "inference"},
-    {include = "utils"},
-    {include = "evaluation"},
-    {include = "preprocessing"}
+    {include = "ml_library"}
 ]
 
 [tool.poetry.dependencies]
@@ -72,4 +66,4 @@ testpaths = ["tests"]
 python_files = "test_*.py"
 python_functions = "test_*"
 python_classes = "Test*"
-addopts = "--cov=config --cov=models --cov=training --cov=inference --cov=utils --cov=evaluation --cov=preprocessing --cov-report=xml --cov-report=term-missing"
+addopts = "--cov=ml_library --cov-report=xml --cov-report=term-missing"

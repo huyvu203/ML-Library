@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # fetch all history for proper versioning
       
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
@@ -30,22 +32,22 @@ jobs:
         virtualenvs-in-project: true
         
     - name: Install dependencies
-      run: poetry install --no-interaction
+      run: poetry install --no-interaction --with dev
       
     - name: Lint with flake8
-      run: poetry run flake8 config models training inference utils evaluation preprocessing tests
+      run: poetry run flake8 ml_library tests
       
     - name: Format check with black
-      run: poetry run black --check config models training inference utils evaluation preprocessing tests
+      run: poetry run black --check ml_library tests
       
     - name: Type check with mypy
-      run: poetry run mypy config models training inference utils evaluation preprocessing
+      run: poetry run mypy ml_library
       
     - name: Security check with bandit
-      run: poetry run bandit -r config models training inference utils evaluation preprocessing
+      run: poetry run bandit -r ml_library
       
     - name: Test with pytest
-      run: poetry run pytest --cov=config --cov=models --cov=training --cov=inference --cov=utils --cov=evaluation --cov=preprocessing --cov-report=xml --cov-report=term
+      run: poetry run pytest --cov=ml_library --cov-report=xml --cov-report=term
       
     - name: Check coverage threshold
       id: check_coverage

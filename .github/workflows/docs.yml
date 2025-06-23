@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     tags:
       - 'v*'
+  workflow_dispatch:  # Allow manual triggering
 
 jobs:
   docs:
@@ -16,7 +17,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.8'
+        python-version: '3.10'
         
     - name: Install Poetry
       uses: snok/install-poetry@v1
@@ -26,16 +27,23 @@ jobs:
         virtualenvs-in-project: true
         
     - name: Install dependencies
-      run: poetry install --no-interaction
+      run: poetry install --no-interaction --with dev
       
     - name: Build documentation
       run: |
         cd docs
         poetry run sphinx-build -b html . _build/html
+        poetry run sphinx-build -b latex . _build/latex
+        cd _build/latex
+        make
+        cd ../..
+        mkdir -p _build/html/pdf
+        cp _build/latex/*.pdf _build/html/pdf/
         
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs/_build/html
+        force_orphan: true

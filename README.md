@@ -2,6 +2,12 @@
 
 A production-ready Python machine learning library with modular components for preprocessing, training, inference, and evaluation.
 
+![CI](https://github.com/yourusername/ml_library/actions/workflows/ci.yml/badge.svg)
+![Docs](https://github.com/yourusername/ml_library/actions/workflows/docs.yml/badge.svg)
+[![Code Coverage](https://codecov.io/gh/yourusername/ml_library/branch/main/graph/badge.svg)](https://codecov.io/gh/yourusername/ml_library)
+[![PyPI version](https://badge.fury.io/py/ml_library.svg)](https://badge.fury.io/py/ml_library)
+[![Documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://yourusername.github.io/ml_library/)
+
 ## Features
 
 - Modular pipeline for data preprocessing, model training, inference, and evaluation
@@ -28,7 +34,7 @@ pip install ml_library
 
 ## Development Setup
 
-This project uses Poetry for dependency management:
+This project uses Poetry for dependency management and GitHub Actions for CI/CD. For details on the CI/CD pipeline, see [CICD.md](CICD.md).
 
 ```bash
 # Clone the repository
