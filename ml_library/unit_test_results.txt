@@ -1,0 +1,551 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.6.0 -- /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/huy/projects/Production-Ready-ML-Library/ml_library
+configfile: pyproject.toml
+plugins: hypothesis-6.135.14, cov-3.0.0
+collecting ... collected 11 items
+
+tests/unit/test_models.py::test_linear_regression_initialization PASSED  [  9%]
+tests/unit/test_models.py::test_linear_regression_fit_predict FAILED     [ 18%]
+tests/unit/test_models.py::test_linear_regression_score FAILED           [ 27%]
+tests/unit/test_models.py::test_linear_regression_not_fitted_error PASSED [ 36%]
+tests/unit/test_models.py::test_linear_regression_get_params PASSED      [ 45%]
+tests/unit/test_models.py::test_logistic_regression_initialization PASSED [ 54%]
+tests/unit/test_models.py::test_logistic_regression_fit_predict FAILED   [ 63%]
+tests/unit/test_models.py::test_logistic_regression_predict_proba FAILED [ 72%]
+tests/unit/test_models.py::test_logistic_regression_score FAILED         [ 81%]
+tests/unit/test_models.py::test_logistic_regression_not_fitted_error PASSED [ 90%]
+tests/unit/test_models.py::test_logistic_regression_get_params PASSED    [100%]
+
+=================================== FAILURES ===================================
+______________________ test_linear_regression_fit_predict ______________________
+
+sample_regression_data = (array([[0.37454012, 0.95071431, 0.73199394, 0.59865848, 0.15601864],
+       [0.15599452, 0.05808361, 0.86617615, 0.60...49334,
+        2.15238086,  1.23163574,  2.9915195 ,  0.89809422,  1.95549099]), array([ 3.5,  1.7, -4.2,  2.1, -1.3]))
+
+    def test_linear_regression_fit_predict(sample_regression_data):
+        """Test fitting and prediction of LinearRegression."""
+        X, y, true_coef = sample_regression_data
+    
+        # Create and fit the model
+        model = LinearRegression(n_iterations=5000, learning_rate=0.01)
+>       model.fit(X, y)
+
+tests/unit/test_models.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.models.regression.LinearRegression object at 0x70fc0dea8e00>
+X = array([[0.37454012, 0.95071431, 0.73199394, 0.59865848, 0.15601864],
+       [0.15599452, 0.05808361, 0.86617615, 0.601... 0.6201326 , 0.27738118, 0.18812116, 0.4636984 ],
+       [0.35335223, 0.58365611, 0.07773464, 0.97439481, 0.98621074]])
+y = array([[ 1.07796675],
+       [-1.71328426],
+       [-1.09061502],
+       [-0.80481459],
+       [ 0.87887873],
+       [...149334],
+       [ 2.15238086],
+       [ 1.23163574],
+       [ 2.9915195 ],
+       [ 0.89809422],
+       [ 1.95549099]])
+
+    def fit(self, X: np.ndarray, y: np.ndarray) -> "LinearRegression":
+        """Fit the linear model using gradient descent.
+    
+        Args:
+            X: Training data of shape (n_samples, n_features)
+            y: Target values of shape (n_samples,)
+    
+        Returns:
+            self: The fitted model
+        """
+        X = self._validate_data(X)
+        y = np.array(y).reshape(-1, 1)
+    
+        n_samples, n_features = X.shape
+    
+        # Initialize parameters
+        if self.fit_intercept:
+            # Add a column of ones for the intercept
+            X_with_intercept = np.hstack((np.ones((n_samples, 1)), X))
+            self.weights_ = np.zeros(n_features + 1)
+        else:
+            X_with_intercept = X
+            self.weights_ = np.zeros(n_features)
+    
+        # Gradient Descent
+        prev_cost = float('inf')
+        for i in range(self.n_iterations):
+            # Calculate predictions
+            y_pred = np.dot(X_with_intercept, self.weights_)
+    
+            # Calculate the error
+            error = y_pred - y
+    
+            # Calculate the gradient
+            gradient = (1/n_samples) * np.dot(X_with_intercept.T, error)
+    
+            # Update parameters - reshape gradient to match weights shape
+>           self.weights_ -= self.learning_rate * gradient.ravel()
+E           ValueError: operands could not be broadcast together with shapes (6,) (600,) (6,)
+
+ml_library/models/regression.py:87: ValueError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 01:20:40 | DEBUG    | ml_library.models.base:__init__:29 | Initialized LinearRegression with params: {'fit_intercept': True, 'learning_rate': 0.01, 'n_iterations': 5000, 'tol': 0.0001}
+_________________________ test_linear_regression_score _________________________
+
+sample_regression_data = (array([[0.37454012, 0.95071431, 0.73199394, 0.59865848, 0.15601864],
+       [0.15599452, 0.05808361, 0.86617615, 0.60...49334,
+        2.15238086,  1.23163574,  2.9915195 ,  0.89809422,  1.95549099]), array([ 3.5,  1.7, -4.2,  2.1, -1.3]))
+
+    def test_linear_regression_score(sample_regression_data):
+        """Test the score method of LinearRegression."""
+        X, y, _ = sample_regression_data
+    
+        # Create and fit the model
+        model = LinearRegression()
+>       model.fit(X, y)
+
+tests/unit/test_models.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.models.regression.LinearRegression object at 0x70fc0d9a90a0>
+X = array([[0.37454012, 0.95071431, 0.73199394, 0.59865848, 0.15601864],
+       [0.15599452, 0.05808361, 0.86617615, 0.601... 0.6201326 , 0.27738118, 0.18812116, 0.4636984 ],
+       [0.35335223, 0.58365611, 0.07773464, 0.97439481, 0.98621074]])
+y = array([[ 1.07796675],
+       [-1.71328426],
+       [-1.09061502],
+       [-0.80481459],
+       [ 0.87887873],
+       [...149334],
+       [ 2.15238086],
+       [ 1.23163574],
+       [ 2.9915195 ],
+       [ 0.89809422],
+       [ 1.95549099]])
+
+    def fit(self, X: np.ndarray, y: np.ndarray) -> "LinearRegression":
+        """Fit the linear model using gradient descent.
+    
+        Args:
+            X: Training data of shape (n_samples, n_features)
+            y: Target values of shape (n_samples,)
+    
+        Returns:
+            self: The fitted model
+        """
+        X = self._validate_data(X)
+        y = np.array(y).reshape(-1, 1)
+    
+        n_samples, n_features = X.shape
+    
+        # Initialize parameters
+        if self.fit_intercept:
+            # Add a column of ones for the intercept
+            X_with_intercept = np.hstack((np.ones((n_samples, 1)), X))
+            self.weights_ = np.zeros(n_features + 1)
+        else:
+            X_with_intercept = X
+            self.weights_ = np.zeros(n_features)
+    
+        # Gradient Descent
+        prev_cost = float('inf')
+        for i in range(self.n_iterations):
+            # Calculate predictions
+            y_pred = np.dot(X_with_intercept, self.weights_)
+    
+            # Calculate the error
+            error = y_pred - y
+    
+            # Calculate the gradient
+            gradient = (1/n_samples) * np.dot(X_with_intercept.T, error)
+    
+            # Update parameters - reshape gradient to match weights shape
+>           self.weights_ -= self.learning_rate * gradient.ravel()
+E           ValueError: operands could not be broadcast together with shapes (6,) (600,) (6,)
+
+ml_library/models/regression.py:87: ValueError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 01:20:40 | DEBUG    | ml_library.models.base:__init__:29 | Initialized LinearRegression with params: {'fit_intercept': True, 'learning_rate': 0.01, 'n_iterations': 1000, 'tol': 0.0001}
+_____________________ test_logistic_regression_fit_predict _____________________
+
+sample_classification_data = (array([[-1.25459881,  4.50714306],
+       [ 2.31993942,  0.98658484],
+       [-3.4398136 , -3.4400548 ],
+       [-4.4...,
+       0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0,
+       1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1]))
+
+    def test_logistic_regression_fit_predict(sample_classification_data):
+        """Test fitting and prediction of LogisticRegression."""
+        X, y = sample_classification_data
+    
+        # Create and fit the model
+        model = LogisticRegression(n_iterations=1000, learning_rate=0.1)
+>       model.fit(X, y)
+
+tests/unit/test_models.py:110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.models.classification.LogisticRegression object at 0x70fc0d9a97c0>
+X = array([[-1.25459881,  4.50714306],
+       [ 2.31993942,  0.98658484],
+       [-3.4398136 , -3.4400548 ],
+       [-4.41... 1.33101457],
+       [-1.60970209, -1.50790425],
+       [ 2.25955679,  3.9711026 ],
+       [ 3.87086424,  2.79875546]])
+y = array([1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0,
+       0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1,...0,
+       0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0,
+       1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1])
+
+    def fit(self, X: np.ndarray, y: np.ndarray) -> "LogisticRegression":
+        """Fit the logistic regression model using gradient descent.
+    
+        Args:
+            X: Training data of shape (n_samples, n_features)
+            y: Target values of shape (n_samples,)
+    
+        Returns:
+            self: The fitted model
+        """
+        X = self._validate_data(X)
+        y = np.array(y)
+    
+        # Get unique classes
+        self.classes_ = np.unique(y)
+    
+        if len(self.classes_) != 2:
+            raise ValueError(
+                f"This LogisticRegression implementation only supports binary classification. "
+                f"Found {len(self.classes_)} classes."
+            )
+    
+        # Map classes to 0 and 1
+        y_binary = np.where(y == self.classes_[1], 1, 0)
+        y_binary = y_binary.reshape(-1, 1)
+    
+        n_samples, n_features = X.shape
+    
+        # Initialize parameters
+        if self.fit_intercept:
+            # Add a column of ones for the intercept
+            X_with_intercept = np.hstack((np.ones((n_samples, 1)), X))
+            self.weights_ = np.zeros(n_features + 1)
+        else:
+            X_with_intercept = X
+            self.weights_ = np.zeros(n_features)
+    
+        # Gradient Descent
+        prev_cost = float('inf')
+        for i in range(self.n_iterations):
+            # Calculate predictions (probability of class 1)
+            linear_model = np.dot(X_with_intercept, self.weights_)
+            y_pred = sigmoid(linear_model)
+    
+            # Calculate error
+            error = y_pred - y_binary
+    
+            # Calculate gradients
+            gradient = (1/n_samples) * np.dot(X_with_intercept.T, error)
+    
+            # Add regularization term if specified
+            if self.penalty == "l2":
+                # L2 regularization (exclude intercept from regularization)
+                if self.fit_intercept:
+                    reg_term = np.zeros_like(self.weights_)
+                    reg_term[1:] = self.weights_[1:] / self.C
+                else:
+                    reg_term = self.weights_ / self.C
+                gradient += reg_term
+            elif self.penalty == "l1":
+                # L1 regularization (exclude intercept from regularization)
+                if self.fit_intercept:
+                    reg_term = np.zeros_like(self.weights_)
+                    reg_term[1:] = np.sign(self.weights_[1:]) / self.C
+                else:
+                    reg_term = np.sign(self.weights_) / self.C
+                gradient += reg_term
+    
+            # Update parameters - reshape gradient to match weights shape
+>           self.weights_ -= self.learning_rate * gradient.ravel()
+E           ValueError: operands could not be broadcast together with shapes (3,) (300,) (3,)
+
+ml_library/models/classification.py:146: ValueError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 01:20:40 | DEBUG    | ml_library.models.base:__init__:29 | Initialized LogisticRegression with params: {'learning_rate': 0.1, 'n_iterations': 1000, 'tol': 0.0001, 'fit_intercept': True, 'penalty': 'none', 'C': 1.0}
+____________________ test_logistic_regression_predict_proba ____________________
+
+sample_classification_data = (array([[-1.25459881,  4.50714306],
+       [ 2.31993942,  0.98658484],
+       [-3.4398136 , -3.4400548 ],
+       [-4.4...,
+       0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0,
+       1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1]))
+
+    def test_logistic_regression_predict_proba(sample_classification_data):
+        """Test probability prediction of LogisticRegression."""
+        X, y = sample_classification_data
+    
+        # Create and fit the model
+        model = LogisticRegression()
+>       model.fit(X, y)
+
+tests/unit/test_models.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.models.classification.LogisticRegression object at 0x70fc0d9aa8a0>
+X = array([[-1.25459881,  4.50714306],
+       [ 2.31993942,  0.98658484],
+       [-3.4398136 , -3.4400548 ],
+       [-4.41... 1.33101457],
+       [-1.60970209, -1.50790425],
+       [ 2.25955679,  3.9711026 ],
+       [ 3.87086424,  2.79875546]])
+y = array([1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0,
+       0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1,...0,
+       0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0,
+       1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1])
+
+    def fit(self, X: np.ndarray, y: np.ndarray) -> "LogisticRegression":
+        """Fit the logistic regression model using gradient descent.
+    
+        Args:
+            X: Training data of shape (n_samples, n_features)
+            y: Target values of shape (n_samples,)
+    
+        Returns:
+            self: The fitted model
+        """
+        X = self._validate_data(X)
+        y = np.array(y)
+    
+        # Get unique classes
+        self.classes_ = np.unique(y)
+    
+        if len(self.classes_) != 2:
+            raise ValueError(
+                f"This LogisticRegression implementation only supports binary classification. "
+                f"Found {len(self.classes_)} classes."
+            )
+    
+        # Map classes to 0 and 1
+        y_binary = np.where(y == self.classes_[1], 1, 0)
+        y_binary = y_binary.reshape(-1, 1)
+    
+        n_samples, n_features = X.shape
+    
+        # Initialize parameters
+        if self.fit_intercept:
+            # Add a column of ones for the intercept
+            X_with_intercept = np.hstack((np.ones((n_samples, 1)), X))
+            self.weights_ = np.zeros(n_features + 1)
+        else:
+            X_with_intercept = X
+            self.weights_ = np.zeros(n_features)
+    
+        # Gradient Descent
+        prev_cost = float('inf')
+        for i in range(self.n_iterations):
+            # Calculate predictions (probability of class 1)
+            linear_model = np.dot(X_with_intercept, self.weights_)
+            y_pred = sigmoid(linear_model)
+    
+            # Calculate error
+            error = y_pred - y_binary
+    
+            # Calculate gradients
+            gradient = (1/n_samples) * np.dot(X_with_intercept.T, error)
+    
+            # Add regularization term if specified
+            if self.penalty == "l2":
+                # L2 regularization (exclude intercept from regularization)
+                if self.fit_intercept:
+                    reg_term = np.zeros_like(self.weights_)
+                    reg_term[1:] = self.weights_[1:] / self.C
+                else:
+                    reg_term = self.weights_ / self.C
+                gradient += reg_term
+            elif self.penalty == "l1":
+                # L1 regularization (exclude intercept from regularization)
+                if self.fit_intercept:
+                    reg_term = np.zeros_like(self.weights_)
+                    reg_term[1:] = np.sign(self.weights_[1:]) / self.C
+                else:
+                    reg_term = np.sign(self.weights_) / self.C
+                gradient += reg_term
+    
+            # Update parameters - reshape gradient to match weights shape
+>           self.weights_ -= self.learning_rate * gradient.ravel()
+E           ValueError: operands could not be broadcast together with shapes (3,) (300,) (3,)
+
+ml_library/models/classification.py:146: ValueError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 01:20:40 | DEBUG    | ml_library.models.base:__init__:29 | Initialized LogisticRegression with params: {'learning_rate': 0.01, 'n_iterations': 1000, 'tol': 0.0001, 'fit_intercept': True, 'penalty': 'none', 'C': 1.0}
+________________________ test_logistic_regression_score ________________________
+
+sample_classification_data = (array([[-1.25459881,  4.50714306],
+       [ 2.31993942,  0.98658484],
+       [-3.4398136 , -3.4400548 ],
+       [-4.4...,
+       0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0,
+       1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1]))
+
+    def test_logistic_regression_score(sample_classification_data):
+        """Test the score method of LogisticRegression."""
+        X, y = sample_classification_data
+    
+        # Create and fit the model
+        model = LogisticRegression()
+>       model.fit(X, y)
+
+tests/unit/test_models.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.models.classification.LogisticRegression object at 0x70fc0d9aa2a0>
+X = array([[-1.25459881,  4.50714306],
+       [ 2.31993942,  0.98658484],
+       [-3.4398136 , -3.4400548 ],
+       [-4.41... 1.33101457],
+       [-1.60970209, -1.50790425],
+       [ 2.25955679,  3.9711026 ],
+       [ 3.87086424,  2.79875546]])
+y = array([1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0,
+       0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1,...0,
+       0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0,
+       1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1])
+
+    def fit(self, X: np.ndarray, y: np.ndarray) -> "LogisticRegression":
+        """Fit the logistic regression model using gradient descent.
+    
+        Args:
+            X: Training data of shape (n_samples, n_features)
+            y: Target values of shape (n_samples,)
+    
+        Returns:
+            self: The fitted model
+        """
+        X = self._validate_data(X)
+        y = np.array(y)
+    
+        # Get unique classes
+        self.classes_ = np.unique(y)
+    
+        if len(self.classes_) != 2:
+            raise ValueError(
+                f"This LogisticRegression implementation only supports binary classification. "
+                f"Found {len(self.classes_)} classes."
+            )
+    
+        # Map classes to 0 and 1
+        y_binary = np.where(y == self.classes_[1], 1, 0)
+        y_binary = y_binary.reshape(-1, 1)
+    
+        n_samples, n_features = X.shape
+    
+        # Initialize parameters
+        if self.fit_intercept:
+            # Add a column of ones for the intercept
+            X_with_intercept = np.hstack((np.ones((n_samples, 1)), X))
+            self.weights_ = np.zeros(n_features + 1)
+        else:
+            X_with_intercept = X
+            self.weights_ = np.zeros(n_features)
+    
+        # Gradient Descent
+        prev_cost = float('inf')
+        for i in range(self.n_iterations):
+            # Calculate predictions (probability of class 1)
+            linear_model = np.dot(X_with_intercept, self.weights_)
+            y_pred = sigmoid(linear_model)
+    
+            # Calculate error
+            error = y_pred - y_binary
+    
+            # Calculate gradients
+            gradient = (1/n_samples) * np.dot(X_with_intercept.T, error)
+    
+            # Add regularization term if specified
+            if self.penalty == "l2":
+                # L2 regularization (exclude intercept from regularization)
+                if self.fit_intercept:
+                    reg_term = np.zeros_like(self.weights_)
+                    reg_term[1:] = self.weights_[1:] / self.C
+                else:
+                    reg_term = self.weights_ / self.C
+                gradient += reg_term
+            elif self.penalty == "l1":
+                # L1 regularization (exclude intercept from regularization)
+                if self.fit_intercept:
+                    reg_term = np.zeros_like(self.weights_)
+                    reg_term[1:] = np.sign(self.weights_[1:]) / self.C
+                else:
+                    reg_term = np.sign(self.weights_) / self.C
+                gradient += reg_term
+    
+            # Update parameters - reshape gradient to match weights shape
+>           self.weights_ -= self.learning_rate * gradient.ravel()
+E           ValueError: operands could not be broadcast together with shapes (3,) (300,) (3,)
+
+ml_library/models/classification.py:146: ValueError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 01:20:40 | DEBUG    | ml_library.models.base:__init__:29 | Initialized LogisticRegression with params: {'learning_rate': 0.01, 'n_iterations': 1000, 'tol': 0.0001, 'fit_intercept': True, 'penalty': 'none', 'C': 1.0}
+=============================== warnings summary ===============================
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_configure_node uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_configure_node(self, node):
+
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_testnodedown uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_testnodedown(self, node, error):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform linux, python 3.12.3-final-0 -----------
+Name                                       Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------
+ml_library/__init__.py                         1      0   100%
+ml_library/config/__init__.py                  2      2     0%   3-5
+ml_library/config/loader.py                   40     40     0%   3-90
+ml_library/evaluation/__init__.py              2      2     0%   3-5
+ml_library/evaluation/metrics.py              48     48     0%   3-162
+ml_library/inference/__init__.py               2      2     0%   3-5
+ml_library/inference/predictor.py             47     47     0%   3-131
+ml_library/models/__init__.py                  9      0   100%
+ml_library/models/base.py                     43     22    49%   37-40, 53, 65, 73-81, 96-110, 118
+ml_library/models/classification.py          104     52    50%   75, 94, 111-112, 130-135, 138-143, 149-184, 195-208, 222-223, 235-239, 266, 269
+ml_library/models/knn_models.py               99     79    20%   42-67, 82-108, 119-123, 135-141, 149, 168-171, 203-229, 244-273, 284-288, 299-303, 315-321, 329, 348-351
+ml_library/models/random_forest.py           112     92    18%   42-67, 82-116, 127-131, 143-149, 157, 176-179, 211-237, 252-287, 298-302, 313-317, 329-335, 343, 362-365
+ml_library/models/regression.py               64     27    58%   71-72, 90-109, 123-128, 140-147, 172, 175
+ml_library/models/svm_models.py              106     86    19%   44-71, 86-114, 125-129, 141-147, 155, 175-178, 214-244, 259-291, 302-306, 317-327, 339-345, 353, 374-377
+ml_library/models/tree_models.py             110     90    18%   40-63, 78-110, 121-125, 137-143, 151, 169-172, 202-226, 241-274, 285-289, 300-304, 316-322, 330, 348-351
+ml_library/models/xgboost_models.py          114     94    18%   44-71, 86-121, 132-136, 148-154, 162, 182-185, 219-247, 262-300, 311-315, 326-330, 342-348, 356, 376-379
+ml_library/preprocessing/__init__.py           2      2     0%   3-5
+ml_library/preprocessing/transformers.py     101    101     0%   3-260
+ml_library/training/__init__.py                2      2     0%   3-5
+ml_library/training/trainer.py                45     45     0%   3-147
+ml_library/utils/__init__.py                   2      0   100%
+ml_library/utils/logger.py                    13      1    92%   42
+------------------------------------------------------------------------
+TOTAL                                       1068    834    22%
+Coverage XML written to file coverage.xml
+
+=========================== short test summary info ============================
+FAILED tests/unit/test_models.py::test_linear_regression_fit_predict - ValueE...
+FAILED tests/unit/test_models.py::test_linear_regression_score - ValueError: ...
+FAILED tests/unit/test_models.py::test_logistic_regression_fit_predict - Valu...
+FAILED tests/unit/test_models.py::test_logistic_regression_predict_proba - Va...
+FAILED tests/unit/test_models.py::test_logistic_regression_score - ValueError...
+=================== 5 failed, 6 passed, 2 warnings in 0.56s ====================

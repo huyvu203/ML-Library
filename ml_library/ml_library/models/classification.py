@@ -98,7 +98,8 @@ class LogisticRegression(BaseModel):
         
         # Map classes to 0 and 1
         y_binary = np.where(y == self.classes_[1], 1, 0)
-        y_binary = y_binary.reshape(-1, 1)
+        # Keep y as 1D array for calculations
+        y_binary = y_binary.reshape(-1)
         
         n_samples, n_features = X.shape
         
@@ -143,7 +144,7 @@ class LogisticRegression(BaseModel):
                 gradient += reg_term
             
             # Update parameters
-            self.weights_ -= self.learning_rate * gradient.flatten()
+            self.weights_ -= self.learning_rate * gradient
             
             # Calculate cost (Cross-entropy loss)
             epsilon = 1e-15  # Small value to prevent log(0)

@@ -58,7 +58,8 @@ class LinearRegression(BaseModel):
             self: The fitted model
         """
         X = self._validate_data(X)
-        y = np.array(y).reshape(-1, 1)
+        # Ensure y is one-dimensional for easier calculations
+        y = np.array(y).reshape(-1)
         
         n_samples, n_features = X.shape
         
@@ -71,30 +72,50 @@ class LinearRegression(BaseModel):
             X_with_intercept = X
             self.weights_ = np.zeros(n_features)
         
-        # Gradient Descent
-        prev_cost = float('inf')
-        for i in range(self.n_iterations):
-            # Calculate predictions
+        # For Linear Regression, we can use the analytical solution instead of gradient descent
+        # This is more stable and guaranteed to find the global optimum
+        iterations_used = 0
+        cost = 0.0
+        
+        try:
+            # Try analytical solution using pseudo-inverse (more stable)
+            self.weights_ = np.linalg.pinv(X_with_intercept) @ y
+            # Calculate final cost for logging
             y_pred = np.dot(X_with_intercept, self.weights_)
-            
-            # Calculate the error
             error = y_pred - y
-            
-            # Calculate the gradient
-            gradient = (1/n_samples) * np.dot(X_with_intercept.T, error)
-            
-            # Update parameters
-            self.weights_ -= self.learning_rate * gradient.flatten()
-            
-            # Calculate cost (MSE)
             cost = np.mean(np.square(error))
+            logger.debug("Using analytical solution for linear regression")
+        except np.linalg.LinAlgError:
+            # Fall back to gradient descent if there are numerical issues
+            logger.debug("Analytical solution failed, using gradient descent")
             
-            # Check for convergence
-            if np.abs(prev_cost - cost) < self.tol:
-                logger.debug(f"Converged after {i+1} iterations")
-                break
+            # Gradient Descent
+            prev_cost = float('inf')
+            for iterations_used in range(self.n_iterations):
+                # Calculate predictions
+                y_pred = np.dot(X_with_intercept, self.weights_)
                 
-            prev_cost = cost
+                # Calculate the error
+                error = y_pred - y
+                
+                # Calculate the gradient
+                gradient = (1/n_samples) * np.dot(X_with_intercept.T, error)
+                
+                # Update parameters
+                self.weights_ -= self.learning_rate * gradient
+                
+                # Calculate cost (MSE)
+                cost = np.mean(np.square(error))
+                
+                # Check for convergence
+                if np.abs(prev_cost - cost) < self.tol:
+                    logger.debug(f"Converged after {iterations_used+1} iterations")
+                    break
+                    
+                prev_cost = cost
+            
+            # Increment to report the actual number of iterations (0-indexed loop)
+            iterations_used += 1
         
         # Extract coefficients and intercept
         if self.fit_intercept:
@@ -105,7 +126,7 @@ class LinearRegression(BaseModel):
             self.coefficients_ = self.weights_
             
         self._fitted = True
-        logger.info(f"LinearRegression fitted after {i+1} iterations with cost: {cost:.6f}")
+        logger.info(f"LinearRegression fitted with cost: {cost:.6f}")
         return self
         
     def predict(self, X: np.ndarray) -> np.ndarray:

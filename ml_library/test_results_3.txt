@@ -1,0 +1,274 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.6.0 -- /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/huy/projects/Production-Ready-ML-Library/ml_library
+configfile: pyproject.toml
+plugins: hypothesis-6.135.14, cov-3.0.0
+collecting ... collected 11 items
+
+tests/unit/test_models.py::test_linear_regression_initialization PASSED  [  9%]
+tests/unit/test_models.py::test_linear_regression_fit_predict FAILED     [ 18%]
+tests/unit/test_models.py::test_linear_regression_score FAILED           [ 27%]
+tests/unit/test_models.py::test_linear_regression_not_fitted_error PASSED [ 36%]
+tests/unit/test_models.py::test_linear_regression_get_params PASSED      [ 45%]
+tests/unit/test_models.py::test_logistic_regression_initialization PASSED [ 54%]
+tests/unit/test_models.py::test_logistic_regression_fit_predict PASSED   [ 63%]
+tests/unit/test_models.py::test_logistic_regression_predict_proba PASSED [ 72%]
+tests/unit/test_models.py::test_logistic_regression_score PASSED         [ 81%]
+tests/unit/test_models.py::test_logistic_regression_not_fitted_error PASSED [ 90%]
+tests/unit/test_models.py::test_logistic_regression_get_params PASSED    [100%]
+
+=================================== FAILURES ===================================
+______________________ test_linear_regression_fit_predict ______________________
+
+sample_regression_data = (array([[0.37454012, 0.95071431, 0.73199394, 0.59865848, 0.15601864],
+       [0.15599452, 0.05808361, 0.86617615, 0.60...49334,
+        2.15238086,  1.23163574,  2.9915195 ,  0.89809422,  1.95549099]), array([ 3.5,  1.7, -4.2,  2.1, -1.3]))
+
+    def test_linear_regression_fit_predict(sample_regression_data):
+        """Test fitting and prediction of LinearRegression."""
+        X, y, true_coef = sample_regression_data
+    
+        # Create and fit the model
+        model = LinearRegression(n_iterations=5000, learning_rate=0.01)
+>       model.fit(X, y)
+
+tests/unit/test_models.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.models.regression.LinearRegression object at 0x7d74b607b4d0>
+X = array([[0.37454012, 0.95071431, 0.73199394, 0.59865848, 0.15601864],
+       [0.15599452, 0.05808361, 0.86617615, 0.601... 0.6201326 , 0.27738118, 0.18812116, 0.4636984 ],
+       [0.35335223, 0.58365611, 0.07773464, 0.97439481, 0.98621074]])
+y = array([ 1.07796675, -1.71328426, -1.09061502, -0.80481459,  0.87887873,
+        2.3574213 ,  2.22030268,  4.71743174, ...548697, -0.10469862, -2.07320935,  2.63149334,
+        2.15238086,  1.23163574,  2.9915195 ,  0.89809422,  1.95549099])
+
+    def fit(self, X: np.ndarray, y: np.ndarray) -> "LinearRegression":
+        """Fit the linear model using gradient descent.
+    
+        Args:
+            X: Training data of shape (n_samples, n_features)
+            y: Target values of shape (n_samples,)
+    
+        Returns:
+            self: The fitted model
+        """
+        X = self._validate_data(X)
+        # Ensure y is one-dimensional for easier calculations
+        y = np.array(y).reshape(-1)
+    
+        n_samples, n_features = X.shape
+    
+        # Initialize parameters
+        if self.fit_intercept:
+            # Add a column of ones for the intercept
+            X_with_intercept = np.hstack((np.ones((n_samples, 1)), X))
+            self.weights_ = np.zeros(n_features + 1)
+        else:
+            X_with_intercept = X
+            self.weights_ = np.zeros(n_features)
+    
+        # For Linear Regression, we can use the analytical solution instead of gradient descent
+        # This is more stable and guaranteed to find the global optimum
+        try:
+            # Try analytical solution using pseudo-inverse (more stable)
+            self.weights_ = np.linalg.pinv(X_with_intercept) @ y
+            logger.debug("Using analytical solution for linear regression")
+        except np.linalg.LinAlgError:
+            # Fall back to gradient descent if there are numerical issues
+            logger.debug("Analytical solution failed, using gradient descent")
+    
+            # Gradient Descent
+            prev_cost = float('inf')
+            for i in range(self.n_iterations):
+                # Calculate predictions
+                y_pred = np.dot(X_with_intercept, self.weights_)
+    
+                # Calculate the error
+                error = y_pred - y
+    
+                # Calculate the gradient
+                gradient = (1/n_samples) * np.dot(X_with_intercept.T, error)
+    
+                # Update parameters
+                self.weights_ -= self.learning_rate * gradient
+    
+                # Calculate cost (MSE)
+                cost = np.mean(np.square(error))
+    
+                # Check for convergence
+                if np.abs(prev_cost - cost) < self.tol:
+                    logger.debug(f"Converged after {i+1} iterations")
+                    break
+    
+                prev_cost = cost
+    
+        # Extract coefficients and intercept
+        if self.fit_intercept:
+            self.intercept_ = self.weights_[0]
+            self.coefficients_ = self.weights_[1:]
+        else:
+            self.intercept_ = 0.0
+            self.coefficients_ = self.weights_
+    
+        self._fitted = True
+>       logger.info(f"LinearRegression fitted after {i+1} iterations with cost: {cost:.6f}")
+E       UnboundLocalError: cannot access local variable 'i' where it is not associated with a value
+
+ml_library/models/regression.py:119: UnboundLocalError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 01:24:07 | DEBUG    | ml_library.models.base:__init__:29 | Initialized LinearRegression with params: {'fit_intercept': True, 'learning_rate': 0.01, 'n_iterations': 5000, 'tol': 0.0001}
+2025-06-23 01:24:07 | DEBUG    | ml_library.models.regression:fit:80 | Using analytical solution for linear regression
+_________________________ test_linear_regression_score _________________________
+
+sample_regression_data = (array([[0.37454012, 0.95071431, 0.73199394, 0.59865848, 0.15601864],
+       [0.15599452, 0.05808361, 0.86617615, 0.60...49334,
+        2.15238086,  1.23163574,  2.9915195 ,  0.89809422,  1.95549099]), array([ 3.5,  1.7, -4.2,  2.1, -1.3]))
+
+    def test_linear_regression_score(sample_regression_data):
+        """Test the score method of LinearRegression."""
+        X, y, _ = sample_regression_data
+    
+        # Create and fit the model
+        model = LinearRegression()
+>       model.fit(X, y)
+
+tests/unit/test_models.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ml_library.models.regression.LinearRegression object at 0x7d74b60ad0a0>
+X = array([[0.37454012, 0.95071431, 0.73199394, 0.59865848, 0.15601864],
+       [0.15599452, 0.05808361, 0.86617615, 0.601... 0.6201326 , 0.27738118, 0.18812116, 0.4636984 ],
+       [0.35335223, 0.58365611, 0.07773464, 0.97439481, 0.98621074]])
+y = array([ 1.07796675, -1.71328426, -1.09061502, -0.80481459,  0.87887873,
+        2.3574213 ,  2.22030268,  4.71743174, ...548697, -0.10469862, -2.07320935,  2.63149334,
+        2.15238086,  1.23163574,  2.9915195 ,  0.89809422,  1.95549099])
+
+    def fit(self, X: np.ndarray, y: np.ndarray) -> "LinearRegression":
+        """Fit the linear model using gradient descent.
+    
+        Args:
+            X: Training data of shape (n_samples, n_features)
+            y: Target values of shape (n_samples,)
+    
+        Returns:
+            self: The fitted model
+        """
+        X = self._validate_data(X)
+        # Ensure y is one-dimensional for easier calculations
+        y = np.array(y).reshape(-1)
+    
+        n_samples, n_features = X.shape
+    
+        # Initialize parameters
+        if self.fit_intercept:
+            # Add a column of ones for the intercept
+            X_with_intercept = np.hstack((np.ones((n_samples, 1)), X))
+            self.weights_ = np.zeros(n_features + 1)
+        else:
+            X_with_intercept = X
+            self.weights_ = np.zeros(n_features)
+    
+        # For Linear Regression, we can use the analytical solution instead of gradient descent
+        # This is more stable and guaranteed to find the global optimum
+        try:
+            # Try analytical solution using pseudo-inverse (more stable)
+            self.weights_ = np.linalg.pinv(X_with_intercept) @ y
+            logger.debug("Using analytical solution for linear regression")
+        except np.linalg.LinAlgError:
+            # Fall back to gradient descent if there are numerical issues
+            logger.debug("Analytical solution failed, using gradient descent")
+    
+            # Gradient Descent
+            prev_cost = float('inf')
+            for i in range(self.n_iterations):
+                # Calculate predictions
+                y_pred = np.dot(X_with_intercept, self.weights_)
+    
+                # Calculate the error
+                error = y_pred - y
+    
+                # Calculate the gradient
+                gradient = (1/n_samples) * np.dot(X_with_intercept.T, error)
+    
+                # Update parameters
+                self.weights_ -= self.learning_rate * gradient
+    
+                # Calculate cost (MSE)
+                cost = np.mean(np.square(error))
+    
+                # Check for convergence
+                if np.abs(prev_cost - cost) < self.tol:
+                    logger.debug(f"Converged after {i+1} iterations")
+                    break
+    
+                prev_cost = cost
+    
+        # Extract coefficients and intercept
+        if self.fit_intercept:
+            self.intercept_ = self.weights_[0]
+            self.coefficients_ = self.weights_[1:]
+        else:
+            self.intercept_ = 0.0
+            self.coefficients_ = self.weights_
+    
+        self._fitted = True
+>       logger.info(f"LinearRegression fitted after {i+1} iterations with cost: {cost:.6f}")
+E       UnboundLocalError: cannot access local variable 'i' where it is not associated with a value
+
+ml_library/models/regression.py:119: UnboundLocalError
+----------------------------- Captured stderr call -----------------------------
+2025-06-23 01:24:07 | DEBUG    | ml_library.models.base:__init__:29 | Initialized LinearRegression with params: {'fit_intercept': True, 'learning_rate': 0.01, 'n_iterations': 1000, 'tol': 0.0001}
+2025-06-23 01:24:07 | DEBUG    | ml_library.models.regression:fit:80 | Using analytical solution for linear regression
+=============================== warnings summary ===============================
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_configure_node uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_configure_node(self, node):
+
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_testnodedown uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_testnodedown(self, node, error):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform linux, python 3.12.3-final-0 -----------
+Name                                       Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------
+ml_library/__init__.py                         1      0   100%
+ml_library/config/__init__.py                  2      2     0%   3-5
+ml_library/config/loader.py                   40     40     0%   3-90
+ml_library/evaluation/__init__.py              2      2     0%   3-5
+ml_library/evaluation/metrics.py              48     48     0%   3-162
+ml_library/inference/__init__.py               2      2     0%   3-5
+ml_library/inference/predictor.py             47     47     0%   3-131
+ml_library/models/__init__.py                  9      0   100%
+ml_library/models/base.py                     43     22    49%   37-40, 53, 65, 73-81, 96-110, 118
+ml_library/models/classification.py          104     27    74%   75, 94, 112-113, 131-136, 139-144, 158-161, 163-166, 180-181, 197, 200, 237, 267, 270
+ml_library/models/knn_models.py               99     79    20%   42-67, 82-108, 119-123, 135-141, 149, 168-171, 203-229, 244-273, 284-288, 299-303, 315-321, 329, 348-351
+ml_library/models/random_forest.py           112     92    18%   42-67, 82-116, 127-131, 143-149, 157, 176-179, 211-237, 252-287, 298-302, 313-317, 329-335, 343, 362-365
+ml_library/models/regression.py               69     30    57%   72-73, 81-108, 115-116, 120, 134-139, 151-158, 183, 186
+ml_library/models/svm_models.py              106     86    19%   44-71, 86-114, 125-129, 141-147, 155, 175-178, 214-244, 259-291, 302-306, 317-327, 339-345, 353, 374-377
+ml_library/models/tree_models.py             110     90    18%   40-63, 78-110, 121-125, 137-143, 151, 169-172, 202-226, 241-274, 285-289, 300-304, 316-322, 330, 348-351
+ml_library/models/xgboost_models.py          114     94    18%   44-71, 86-121, 132-136, 148-154, 162, 182-185, 219-247, 262-300, 311-315, 326-330, 342-348, 356, 376-379
+ml_library/preprocessing/__init__.py           2      2     0%   3-5
+ml_library/preprocessing/transformers.py     101    101     0%   3-260
+ml_library/training/__init__.py                2      2     0%   3-5
+ml_library/training/trainer.py                45     45     0%   3-147
+ml_library/utils/__init__.py                   2      0   100%
+ml_library/utils/logger.py                    13      1    92%   42
+------------------------------------------------------------------------
+TOTAL                                       1073    812    24%
+Coverage XML written to file coverage.xml
+
+=========================== short test summary info ============================
+FAILED tests/unit/test_models.py::test_linear_regression_fit_predict - Unboun...
+FAILED tests/unit/test_models.py::test_linear_regression_score - UnboundLocal...
+=================== 2 failed, 9 passed, 2 warnings in 0.63s ====================

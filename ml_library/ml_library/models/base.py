@@ -28,6 +28,17 @@ class BaseModel(ABC):
         self.params = kwargs
         logger.debug(f"Initialized {self.__class__.__name__} with params: {kwargs}")
     
+    def check_is_fitted(self) -> None:
+        """Check if the model has been fitted.
+        
+        Raises:
+            ValueError: If the model is not fitted.
+        """
+        if not self._fitted:
+            raise ValueError(f"This {self.__class__.__name__} instance is not fitted yet. "
+                            "Call 'fit' with appropriate arguments before using this model.")
+        return None
+    
     @abstractmethod
     def fit(self, X: np.ndarray, y: np.ndarray) -> "BaseModel":
         """Fit the model to the data.

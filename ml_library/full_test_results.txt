@@ -1,0 +1,111 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.6.0
+rootdir: /home/huy/projects/Production-Ready-ML-Library/ml_library
+configfile: pyproject.toml
+testpaths: tests
+plugins: hypothesis-6.135.14, cov-3.0.0
+collected 76 items
+
+tests/integration/test_pipeline.py ......                                [  7%]
+tests/unit/test_config.py .......                                        [ 17%]
+tests/unit/test_knn_models.py ................                           [ 38%]
+tests/unit/test_models.py ...........                                    [ 52%]
+tests/unit/test_svm_imports.py .                                         [ 53%]
+tests/unit/test_svm_models.py .............                              [ 71%]
+tests/unit/test_tree_models.py ............                              [ 86%]
+tests/unit/temp/test_imports.py ......                                   [ 94%]
+tests/unit/temp/test_svm.py ....                                         [100%]
+
+=============================== warnings summary ===============================
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_configure_node uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_configure_node(self, node):
+
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_testnodedown uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_testnodedown(self, node, error):
+
+tests/unit/test_tree_models.py::test_classifier_fit_predict[XGBoostClassifier-model_params2]
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [01:26:42] WARNING: /workspace/src/learner.cc:740: 
+  Parameters: { "use_label_encoder" } are not used.
+  
+    warnings.warn(smsg, UserWarning)
+
+tests/unit/temp/test_imports.py::test_base_imports
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_base_imports returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_linear_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_linear_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_tree_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_tree_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_boosting_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_boosting_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_svm_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_svm_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_imports.py::test_knn_models
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_imports.py::test_knn_models returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_regressor_init
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_regressor_init returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_classifier_init
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_classifier_init returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_regressor_fit_predict
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_regressor_fit_predict returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+tests/unit/temp/test_svm.py::test_svm_classifier_fit_predict
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/_pytest/python.py:198: PytestReturnNotNoneWarning: Expected None, but tests/unit/temp/test_svm.py::test_svm_classifier_fit_predict returned True, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform linux, python 3.12.3-final-0 -----------
+Name                                       Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------
+ml_library/__init__.py                         1      0   100%
+ml_library/config/__init__.py                  2      0   100%
+ml_library/config/loader.py                   40      1    98%   60
+ml_library/evaluation/__init__.py              2      0   100%
+ml_library/evaluation/metrics.py              48      5    90%   40, 152-155
+ml_library/inference/__init__.py               2      0   100%
+ml_library/inference/predictor.py             47     26    45%   34-36, 56, 72-73, 96-131
+ml_library/models/__init__.py                  9      0   100%
+ml_library/models/base.py                     43     20    53%   38, 53, 65, 73-81, 96-110, 118
+ml_library/models/classification.py          104     27    74%   75, 94, 112-113, 131-136, 139-144, 158-161, 163-166, 180-181, 197, 200, 237, 267, 270
+ml_library/models/knn_models.py               99      9    91%   65-67, 136, 227-229, 300, 316
+ml_library/models/random_forest.py           112     15    87%   65-67, 128, 144, 157, 177, 235-237, 299, 314, 330, 343, 363
+ml_library/models/regression.py               75     22    71%   72-73, 88-118, 125-126, 145, 162, 193, 196
+ml_library/models/svm_models.py              106     11    90%   69-71, 142, 176, 242-244, 318, 340, 375
+ml_library/models/tree_models.py             110     15    86%   61-63, 122, 138, 151, 170, 224-226, 286, 301, 317, 330, 349
+ml_library/models/xgboost_models.py          114     15    87%   69-71, 133, 149, 162, 183, 245-247, 312, 327, 343, 356, 377
+ml_library/preprocessing/__init__.py           2      2     0%   3-5
+ml_library/preprocessing/transformers.py     101    101     0%   3-260
+ml_library/training/__init__.py                2      0   100%
+ml_library/training/trainer.py                45      3    93%   79-80, 130
+ml_library/utils/__init__.py                   2      0   100%
+ml_library/utils/logger.py                    13      1    92%   42
+------------------------------------------------------------------------
+TOTAL                                       1079    273    75%
+Coverage XML written to file coverage.xml
+
+======================= 76 passed, 13 warnings in 2.43s ========================

@@ -1,0 +1,68 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.6.0 -- /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /home/huy/projects/Production-Ready-ML-Library/ml_library
+configfile: pyproject.toml
+plugins: hypothesis-6.135.14, cov-3.0.0
+collecting ... collected 11 items
+
+tests/unit/test_models.py::test_linear_regression_initialization PASSED  [  9%]
+tests/unit/test_models.py::test_linear_regression_fit_predict PASSED     [ 18%]
+tests/unit/test_models.py::test_linear_regression_score PASSED           [ 27%]
+tests/unit/test_models.py::test_linear_regression_not_fitted_error PASSED [ 36%]
+tests/unit/test_models.py::test_linear_regression_get_params PASSED      [ 45%]
+tests/unit/test_models.py::test_logistic_regression_initialization PASSED [ 54%]
+tests/unit/test_models.py::test_logistic_regression_fit_predict PASSED   [ 63%]
+tests/unit/test_models.py::test_logistic_regression_predict_proba PASSED [ 72%]
+tests/unit/test_models.py::test_logistic_regression_score PASSED         [ 81%]
+tests/unit/test_models.py::test_logistic_regression_not_fitted_error PASSED [ 90%]
+tests/unit/test_models.py::test_logistic_regression_get_params PASSED    [100%]
+
+=============================== warnings summary ===============================
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_configure_node uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_configure_node(self, node):
+
+../../../.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-9kDGecR2-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:265: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_testnodedown uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_testnodedown(self, node, error):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform linux, python 3.12.3-final-0 -----------
+Name                                       Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------
+ml_library/__init__.py                         1      0   100%
+ml_library/config/__init__.py                  2      2     0%   3-5
+ml_library/config/loader.py                   40     40     0%   3-90
+ml_library/evaluation/__init__.py              2      2     0%   3-5
+ml_library/evaluation/metrics.py              48     48     0%   3-162
+ml_library/inference/__init__.py               2      2     0%   3-5
+ml_library/inference/predictor.py             47     47     0%   3-131
+ml_library/models/__init__.py                  9      0   100%
+ml_library/models/base.py                     43     22    49%   37-40, 53, 65, 73-81, 96-110, 118
+ml_library/models/classification.py          104     27    74%   75, 94, 112-113, 131-136, 139-144, 158-161, 163-166, 180-181, 197, 200, 237, 267, 270
+ml_library/models/knn_models.py               99     79    20%   42-67, 82-108, 119-123, 135-141, 149, 168-171, 203-229, 244-273, 284-288, 299-303, 315-321, 329, 348-351
+ml_library/models/random_forest.py           112     92    18%   42-67, 82-116, 127-131, 143-149, 157, 176-179, 211-237, 252-287, 298-302, 313-317, 329-335, 343, 362-365
+ml_library/models/regression.py               75     22    71%   72-73, 88-118, 125-126, 145, 162, 193, 196
+ml_library/models/svm_models.py              106     86    19%   44-71, 86-114, 125-129, 141-147, 155, 175-178, 214-244, 259-291, 302-306, 317-327, 339-345, 353, 374-377
+ml_library/models/tree_models.py             110     90    18%   40-63, 78-110, 121-125, 137-143, 151, 169-172, 202-226, 241-274, 285-289, 300-304, 316-322, 330, 348-351
+ml_library/models/xgboost_models.py          114     94    18%   44-71, 86-121, 132-136, 148-154, 162, 182-185, 219-247, 262-300, 311-315, 326-330, 342-348, 356, 376-379
+ml_library/preprocessing/__init__.py           2      2     0%   3-5
+ml_library/preprocessing/transformers.py     101    101     0%   3-260
+ml_library/training/__init__.py                2      2     0%   3-5
+ml_library/training/trainer.py                45     45     0%   3-147
+ml_library/utils/__init__.py                   2      0   100%
+ml_library/utils/logger.py                    13      1    92%   42
+------------------------------------------------------------------------
+TOTAL                                       1079    804    25%
+Coverage XML written to file coverage.xml
+
+======================== 11 passed, 2 warnings in 0.54s ========================
