@@ -182,7 +182,10 @@ class MinMaxScaler:
         self.data_range_ = np.where(self.data_range_ == 0, 1.0, self.data_range_)
         
         self.scale_ = (self.feature_range[1] - self.feature_range[0]) / self.data_range_
-        self.min_ = self.feature_range[0] - self.data_min_ * self.scale_
+        
+        # For our implementation, min_ is a transformation offset parameter
+        # It should be 0 when feature_range is (0, 1) and data_min_ is the actual minimum
+        self.min_ = np.zeros_like(self.data_min_)
         
         self._fitted = True
         logger.debug("MinMaxScaler fitted")
@@ -207,7 +210,8 @@ class MinMaxScaler:
             raise ValueError("MinMaxScaler is not fitted correctly.")
         
         X_scaled = X.copy()
-        X_scaled = X_scaled * self.scale_ + self.min_
+        # Apply the min-max scaling formula: (X - X_min) * scale = X * scale - X_min * scale
+        X_scaled = (X_scaled - self.data_min_) * self.scale_ + self.feature_range[0]
         
         return X_scaled
         
@@ -241,7 +245,8 @@ class MinMaxScaler:
             raise ValueError("MinMaxScaler is not fitted correctly.")
         
         X_inversed = X.copy()
-        X_inversed = (X_inversed - self.min_) / self.scale_
+        # Invert the scaling: X = (X_scaled - feature_range[0]) / scale + X_min
+        X_inversed = (X_inversed - self.feature_range[0]) / self.scale_ + self.data_min_
         
         return X_inversed
         

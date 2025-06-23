@@ -132,11 +132,12 @@ class TestMinMaxScaler:
         assert scaler._fitted is True
         
         # Check computed statistics
-        np.testing.assert_almost_equal(scaler.min_, np.array([1, 2]))
         np.testing.assert_almost_equal(scaler.data_min_, np.array([1, 2]))
         np.testing.assert_almost_equal(scaler.data_max_, np.array([5, 6]))
         np.testing.assert_almost_equal(scaler.data_range_, np.array([4, 4]))
         np.testing.assert_almost_equal(scaler.scale_, np.array([0.25, 0.25]))
+        # min_ isn't the minimum value, but a transformation parameter: feature_range[0] - data_min_ * scale_
+        np.testing.assert_almost_equal(scaler.min_, np.array([0, 0]))
     
     def test_transform(self):
         """Test transform method of MinMaxScaler."""

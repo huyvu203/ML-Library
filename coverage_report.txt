@@ -160,7 +160,7 @@ tests/unit/temp/test_svm.py::test_svm_classifier_fit_predict PASSED      [100%]
 =================================== FAILURES ===================================
 ________________ TestPredictor.test_predict_with_probabilities _________________
 
-self = <test_predictor_complete.TestPredictor object at 0x7e5d3c5359a0>
+self = <test_predictor_complete.TestPredictor object at 0x7d351bb45910>
 
     def test_predict_with_probabilities(self):
         """Test the predict method with probabilities."""
@@ -177,7 +177,7 @@ self = <test_predictor_complete.TestPredictor object at 0x7e5d3c5359a0>
 tests/unit/test_predictor_complete.py:73: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <Mock spec='MockModel' id='138938908328400'>, name = 'predict_proba'
+self = <Mock spec='MockModel' id='137667050342976'>, name = 'predict_proba'
 
     def __getattr__(self, name):
         if name in {'_mock_methods', '_mock_unsafe'}:
@@ -190,7 +190,7 @@ E               AttributeError: Mock object has no attribute 'predict_proba'
 /usr/lib/python3.12/unittest/mock.py:658: AttributeError
 ____ TestPredictor.test_predict_with_probabilities_handling_attribute_error ____
 
-self = <test_predictor_complete.TestPredictor object at 0x7e5d3c5351c0>
+self = <test_predictor_complete.TestPredictor object at 0x7d351bb45010>
 
     def test_predict_with_probabilities_handling_attribute_error(self):
         """Test handling of AttributeError when requesting probabilities."""
@@ -205,7 +205,7 @@ self = <test_predictor_complete.TestPredictor object at 0x7e5d3c5351c0>
 tests/unit/test_predictor_complete.py:109: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <Mock spec='MockModel' id='138938908332672'>, name = 'predict_proba'
+self = <Mock spec='MockModel' id='137667050153616'>, name = 'predict_proba'
 
     def __getattr__(self, name):
         if name in {'_mock_methods', '_mock_unsafe'}:
@@ -218,7 +218,7 @@ E               AttributeError: Mock object has no attribute 'predict_proba'
 /usr/lib/python3.12/unittest/mock.py:658: AttributeError
 _ TestPredictor.test_predict_with_probabilities_handling_not_implemented_error _
 
-self = <test_predictor_complete.TestPredictor object at 0x7e5d3c536ba0>
+self = <test_predictor_complete.TestPredictor object at 0x7d351bb46ab0>
 
     def test_predict_with_probabilities_handling_not_implemented_error(self):
         """Test handling of NotImplementedError when requesting probabilities."""
@@ -233,7 +233,7 @@ self = <test_predictor_complete.TestPredictor object at 0x7e5d3c536ba0>
 tests/unit/test_predictor_complete.py:130: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <Mock spec='MockModel' id='138938908337808'>, name = 'predict_proba'
+self = <Mock spec='MockModel' id='137667050158224'>, name = 'predict_proba'
 
     def __getattr__(self, name):
         if name in {'_mock_methods', '_mock_unsafe'}:
@@ -246,7 +246,7 @@ E               AttributeError: Mock object has no attribute 'predict_proba'
 /usr/lib/python3.12/unittest/mock.py:658: AttributeError
 _____________ TestPredictor.test_predict_batch_with_probabilities ______________
 
-self = <test_predictor_complete.TestPredictor object at 0x7e5d3c536de0>
+self = <test_predictor_complete.TestPredictor object at 0x7d351bb46cf0>
 
     def test_predict_batch_with_probabilities(self):
         """Test the predict_batch method with probabilities."""
@@ -265,7 +265,7 @@ self = <test_predictor_complete.TestPredictor object at 0x7e5d3c536de0>
 tests/unit/test_predictor_complete.py:181: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <Mock spec='MockModel' id='138938908339008'>, name = 'predict_proba'
+self = <Mock spec='MockModel' id='137667050348208'>, name = 'predict_proba'
 
     def __getattr__(self, name):
         if name in {'_mock_methods', '_mock_unsafe'}:
@@ -278,7 +278,7 @@ E               AttributeError: Mock object has no attribute 'predict_proba'
 /usr/lib/python3.12/unittest/mock.py:658: AttributeError
 _________________ TestPredictor.test_save_and_load_predictions _________________
 
-self = <test_predictor_complete.TestPredictor object at 0x7e5d3c536f00>
+self = <test_predictor_complete.TestPredictor object at 0x7d351bb46e10>
 
     def test_save_and_load_predictions(self):
         """Test saving and loading predictions."""
@@ -310,7 +310,7 @@ inference/predictor.py:169: in load_predictions
     return np.load(file_path, allow_pickle=True)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-file = PosixPath('/tmp/tmpf8usolaw'), mmap_mode = None, allow_pickle = True
+file = PosixPath('/tmp/tmp47taee7t'), mmap_mode = None, allow_pickle = True
 fix_imports = True, encoding = 'ASCII'
 
     @set_module('numpy')
@@ -472,13 +472,13 @@ E               EOFError: No data left in file
 
 ../../.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/numpy/lib/npyio.py:436: EOFError
 ----------------------------- Captured stderr call -----------------------------
-2025-06-23 10:26:14 | DEBUG    | inference.predictor:__init__:40 | Initialized predictor with model MockModel
-2025-06-23 10:26:14 | DEBUG    | inference.predictor:predict:61 | Making predictions on 3 samples
-2025-06-23 10:26:14 | INFO     | inference.predictor:save_predictions:145 | Saving predictions to /tmp/tmpf8usolaw
-2025-06-23 10:26:14 | INFO     | inference.predictor:load_predictions:166 | Loading predictions from /tmp/tmpf8usolaw
+2025-06-23 11:18:16 | DEBUG    | inference.predictor:__init__:40 | Initialized predictor with model MockModel
+2025-06-23 11:18:16 | DEBUG    | inference.predictor:predict:61 | Making predictions on 3 samples
+2025-06-23 11:18:16 | INFO     | inference.predictor:save_predictions:145 | Saving predictions to /tmp/tmp47taee7t
+2025-06-23 11:18:16 | INFO     | inference.predictor:load_predictions:166 | Loading predictions from /tmp/tmp47taee7t
 ____________ TestPredictor.test_save_predictions_with_probabilities ____________
 
-self = <test_predictor_complete.TestPredictor object at 0x7e5d3c537020>
+self = <test_predictor_complete.TestPredictor object at 0x7d351bb46f30>
 
     def test_save_predictions_with_probabilities(self):
         """Test saving predictions with probabilities."""
@@ -494,7 +494,7 @@ self = <test_predictor_complete.TestPredictor object at 0x7e5d3c537020>
 tests/unit/test_predictor_complete.py:241: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <Mock spec='MockModel' id='138938908282944'>, name = 'predict_proba'
+self = <Mock spec='MockModel' id='137667050355552'>, name = 'predict_proba'
 
     def __getattr__(self, name):
         if name in {'_mock_methods', '_mock_unsafe'}:
@@ -507,7 +507,7 @@ E               AttributeError: Mock object has no attribute 'predict_proba'
 /usr/lib/python3.12/unittest/mock.py:658: AttributeError
 __________________________ TestMinMaxScaler.test_fit ___________________________
 
-self = <test_preprocessing.TestMinMaxScaler object at 0x7e5d3c5364b0>
+self = <test_preprocessing.TestMinMaxScaler object at 0x7d351bb46450>
 
     def test_fit(self):
         """Test fitting of MinMaxScaler."""
@@ -517,11 +517,12 @@ self = <test_preprocessing.TestMinMaxScaler object at 0x7e5d3c5364b0>
     
         assert fitted_scaler is scaler  # Check if it returns self
         assert scaler._fitted is True
+        assert scaler._fitted is True
     
         # Check computed statistics
 >       np.testing.assert_almost_equal(scaler.min_, np.array([1, 2]))
 
-tests/unit/test_preprocessing.py:134: 
+tests/unit/test_preprocessing.py:135: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 /usr/lib/python3.12/contextlib.py:81: in inner
     return func(*args, **kwds)
@@ -529,7 +530,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     return func(*args, **kwds)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-args = (<function assert_array_almost_equal.<locals>.compare at 0x7e5d3c480180>, array([-0.25, -0.5 ]), array([1, 2]))
+args = (<function assert_array_almost_equal.<locals>.compare at 0x7d351b8e8180>, array([-0.25, -0.5 ]), array([1, 2]))
 kwds = {'err_msg': '', 'header': 'Arrays are not almost equal to 7 decimals', 'precision': 7, 'verbose': True}
 
     @wraps(func)
@@ -547,7 +548,7 @@ E            y: array([1, 2])
 
 /usr/lib/python3.12/contextlib.py:81: AssertionError
 ----------------------------- Captured stderr call -----------------------------
-2025-06-23 10:26:15 | DEBUG    | preprocessing.transformers:fit:188 | MinMaxScaler fitted
+2025-06-23 11:18:17 | DEBUG    | preprocessing.transformers:fit:188 | MinMaxScaler fitted
 =============================== warnings summary ===============================
 ../../.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256
   /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/pytest_cov/plugin.py:256: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_configure_node uses old-style configuration options (marks or attributes).
@@ -564,7 +565,7 @@ E            y: array([1, 2])
     def pytest_testnodedown(self, node, error):
 
 tests/unit/test_tree_models.py::test_classifier_fit_predict[XGBoostClassifier-model_params2]
-  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [10:26:15] WARNING: /workspace/src/learner.cc:740: 
+  /home/huy/.cache/pypoetry/virtualenvs/ml-library-R55_URkK-py3.12/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [11:18:18] WARNING: /workspace/src/learner.cc:740: 
   Parameters: { "use_label_encoder" } are not used.
   
     warnings.warn(smsg, UserWarning)
@@ -612,31 +613,77 @@ tests/unit/temp/test_svm.py::test_svm_classifier_fit_predict
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 
 ---------- coverage: platform linux, python 3.12.3-final-0 -----------
-Name                            Stmts   Miss  Cover   Missing
--------------------------------------------------------------
-config/__init__.py                  2      0   100%
-config/loader.py                   40      0   100%
-evaluation/__init__.py              2      0   100%
-evaluation/metrics.py              48      0   100%
-inference/__init__.py               2      0   100%
-inference/predictor.py             72     11    85%   183-204
-models/__init__.py                  9      0   100%
-models/base.py                     43      3    93%   53, 65, 105
-models/classification.py          104     27    74%   75, 94, 112-113, 131-136, 139-144, 158-161, 163-166, 180-181, 197, 200, 237, 267, 270
-models/knn_models.py               99      9    91%   65-67, 136, 227-229, 300, 316
-models/random_forest.py           112     15    87%   65-67, 128, 144, 157, 177, 235-237, 299, 314, 330, 343, 363
-models/regression.py               75     22    71%   72-73, 88-118, 125-126, 145, 162, 193, 196
-models/svm_models.py              106     11    90%   69-71, 142, 176, 242-244, 318, 340, 375
-models/tree_models.py             110     15    86%   61-63, 122, 138, 151, 170, 224-226, 286, 301, 317, 330, 349
-models/xgboost_models.py          114     15    87%   69-71, 133, 149, 162, 183, 245-247, 312, 327, 343, 356, 377
-preprocessing/__init__.py           2      0   100%
-preprocessing/transformers.py     103      7    93%   76, 112, 132, 207, 241, 258, 264
-training/__init__.py                2      0   100%
-training/trainer.py                45      3    93%   79-80, 130
-utils/__init__.py                   2      0   100%
-utils/logger.py                    13      1    92%   42
--------------------------------------------------------------
-TOTAL                            1105    139    87%
+Name                                       Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------
+__init__.py                                    1      1     0%   3
+config/__init__.py                             2      0   100%
+config/loader.py                              40      0   100%
+diagnostic_tests.py                           52     52     0%   3-77
+evaluation/__init__.py                         2      0   100%
+evaluation/metrics.py                         48      0   100%
+fix_imports.py                                26     26     0%   7-44
+fix_test_imports.py                           24     24     0%   7-42
+inference/__init__.py                          2      0   100%
+inference/predictor.py                        72     11    85%   183-204
+ml_library/__init__.py                         1      1     0%   3
+ml_library/config/__init__.py                  2      2     0%   3-5
+ml_library/config/loader.py                   40     40     0%   3-90
+ml_library/evaluation/__init__.py              2      2     0%   3-5
+ml_library/evaluation/metrics.py              48     48     0%   3-162
+ml_library/inference/__init__.py               2      2     0%   3-5
+ml_library/inference/predictor.py             72     72     0%   3-204
+ml_library/models/__init__.py                  9      9     0%   3-12
+ml_library/models/base.py                     43     43     0%   3-118
+ml_library/models/classification.py          104    104     0%   3-272
+ml_library/models/knn_models.py               99     99     0%   3-351
+ml_library/models/random_forest.py           112    112     0%   3-365
+ml_library/models/regression.py               75     75     0%   3-198
+ml_library/models/svm_models.py              106    106     0%   3-377
+ml_library/models/tree_models.py             110    110     0%   3-351
+ml_library/models/xgboost_models.py          114    114     0%   3-379
+ml_library/preprocessing/__init__.py           2      2     0%   3-5
+ml_library/preprocessing/transformers.py     101    101     0%   3-260
+ml_library/training/__init__.py                2      2     0%   3-5
+ml_library/training/trainer.py                45     45     0%   3-147
+ml_library/utils/__init__.py                   2      2     0%   3-5
+ml_library/utils/logger.py                    13     13     0%   3-55
+models/__init__.py                             9      0   100%
+models/base.py                                43      3    93%   53, 65, 105
+models/classification.py                     104     27    74%   75, 94, 112-113, 131-136, 139-144, 158-161, 163-166, 180-181, 197, 200, 237, 267, 270
+models/knn_models.py                          99      9    91%   65-67, 136, 227-229, 300, 316
+models/random_forest.py                      112     15    87%   65-67, 128, 144, 157, 177, 235-237, 299, 314, 330, 343, 363
+models/regression.py                          75     22    71%   72-73, 88-118, 125-126, 145, 162, 193, 196
+models/svm_models.py                         106     11    90%   69-71, 142, 176, 242-244, 318, 340, 375
+models/tree_models.py                        110     15    86%   61-63, 122, 138, 151, 170, 224-226, 286, 301, 317, 330, 349
+models/xgboost_models.py                     114     15    87%   69-71, 133, 149, 162, 183, 245-247, 312, 327, 343, 356, 377
+preprocessing/__init__.py                      2      0   100%
+preprocessing/transformers.py                103      7    93%   76, 112, 132, 207, 241, 258, 264
+setup.py                                       3      3     0%   9-12
+simple_svm_test.py                            10     10     0%   4-17
+test_imports.py                               57     57     0%   4-87
+test_svm.py                                   57     57     0%   4-89
+tests/conftest.py                             36      2    94%   52, 62
+tests/integration/test_pipeline.py           112      0   100%
+tests/unit/temp/test_imports.py               57     25    56%   10-12, 20-22, 33-35, 43-45, 53-55, 63-65, 69-83, 87
+tests/unit/temp/test_svm.py                   57     19    67%   13-15, 23-25, 44-46, 67-69, 73-85, 89
+tests/unit/test_base_model.py                 99     17    83%   137-164
+tests/unit/test_config.py                     51      0   100%
+tests/unit/test_config_loader.py              99      0   100%
+tests/unit/test_knn_models.py                 81      0   100%
+tests/unit/test_metrics.py                   120      2    98%   201-203
+tests/unit/test_models.py                     82      0   100%
+tests/unit/test_predictor.py                 142     34    76%   210-237, 244-280
+tests/unit/test_predictor_complete.py        140     44    69%   80-95, 112-120, 133-141, 187-198, 230, 247-274
+tests/unit/test_preprocessing.py             121      4    97%   136-139
+tests/unit/test_svm_imports.py                 9      0   100%
+tests/unit/test_svm_models.py                 77      0   100%
+tests/unit/test_tree_models.py                65      0   100%
+training/__init__.py                           2      0   100%
+training/trainer.py                           45      3    93%   79-80, 130
+utils/__init__.py                              2      0   100%
+utils/logger.py                               13      1    92%   42
+------------------------------------------------------------------------
+TOTAL                                       3787   1620    57%
 Coverage XML written to file coverage.xml
 
 =========================== short test summary info ============================
@@ -647,4 +694,4 @@ FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_predict_batch_
 FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_save_and_load_predictions
 FAILED tests/unit/test_predictor_complete.py::TestPredictor::test_save_predictions_with_probabilities
 FAILED tests/unit/test_preprocessing.py::TestMinMaxScaler::test_fit - Asserti...
-============ 7 failed, 138 passed, 3 skipped, 13 warnings in 5.30s =============
+============ 7 failed, 138 passed, 3 skipped, 13 warnings in 13.95s ============

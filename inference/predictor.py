@@ -123,7 +123,7 @@ class Predictor:
         # Combine batch results
         predictions = np.concatenate(all_predictions)
         
-        if all_probabilities:
+        if return_probabilities and all_probabilities:
             probabilities = np.concatenate(all_probabilities)
             return {
                 "predictions": predictions,
@@ -144,8 +144,15 @@ class Predictor:
         
         logger.info(f"Saving predictions to {file_path}")
         
-        # Always use numpy save with allow_pickle for consistency
-        np.save(file_path, predictions, allow_pickle=True)
+        # Check if it's a dictionary with predictions and probabilities
+        if isinstance(predictions, dict) and "predictions" in predictions and "probabilities" in predictions:
+            # Save as .npz file with multiple arrays
+            np.savez(file_path, 
+                     predictions=predictions["predictions"], 
+                     probabilities=predictions["probabilities"])
+        else:
+            # For regular arrays, use standard np.save
+            np.save(file_path, predictions)
     
     def load_predictions(self, file_path: Union[str, Path]) -> Union[np.ndarray, Dict[str, np.ndarray]]:
         """Load predictions from a file.
@@ -161,12 +168,25 @@ class Predictor:
         """
         file_path = Path(file_path)
         if not file_path.exists():
-            raise FileNotFoundError(f"Predictions file not found: {file_path}")
+            # Check if .npz extension exists instead
+            npz_path = file_path.with_suffix('.npz')
+            if npz_path.exists():
+                file_path = npz_path
+            else:
+                raise FileNotFoundError(f"Predictions file not found: {file_path}")
         
         logger.info(f"Loading predictions from {file_path}")
         
-        # Load with allow_pickle to handle both arrays and dicts
-        return np.load(file_path, allow_pickle=True)
+        # Handle .npz files (dictionary format)
+        if str(file_path).endswith('.npz'):
+            data = np.load(file_path, allow_pickle=True)
+            return {
+                "predictions": data["predictions"],
+                "probabilities": data["probabilities"]
+            }
+        else:
+            # For regular arrays, ensure allow_pickle is True
+            return np.load(file_path, allow_pickle=True)
     
     def explain_feature_importance(self, feature_names: Optional[List[str]] = None) -> List[Dict[str, Union[str, float]]]:
         """Get feature importance of the model.

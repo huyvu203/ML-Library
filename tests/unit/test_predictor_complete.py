@@ -67,7 +67,7 @@ class TestPredictor:
     def test_predict_with_probabilities(self):
         """Test the predict method with probabilities."""
         # Create a mock model for testing
-        model = Mock(spec=BaseModel)
+        model = Mock()
         model.check_is_fitted.return_value = None
         model.predict.return_value = np.array([1, 0, 1])
         model.predict_proba.return_value = np.array([
@@ -101,7 +101,7 @@ class TestPredictor:
     def test_predict_with_probabilities_handling_attribute_error(self):
         """Test handling of AttributeError when requesting probabilities."""
         # Create a mock model that raises AttributeError
-        model = Mock(spec=BaseModel)
+        model = Mock()
         model.check_is_fitted.return_value = None
         model.predict.return_value = np.array([1, 0, 1])
         
@@ -122,7 +122,7 @@ class TestPredictor:
     def test_predict_with_probabilities_handling_not_implemented_error(self):
         """Test handling of NotImplementedError when requesting probabilities."""
         # Create a mock model that raises NotImplementedError
-        model = Mock(spec=BaseModel)
+        model = Mock()
         model.check_is_fitted.return_value = None
         model.predict.return_value = np.array([1, 0, 1])
         
@@ -172,7 +172,7 @@ class TestPredictor:
     def test_predict_batch_with_probabilities(self):
         """Test the predict_batch method with probabilities."""
         # Create a mock model for testing
-        model = Mock(spec=BaseModel)
+        model = Mock()
         model.check_is_fitted.return_value = None
         model.predict.side_effect = [
             np.array([1, 0]),
@@ -204,7 +204,7 @@ class TestPredictor:
         
     def test_save_and_load_predictions(self):
         """Test saving and loading predictions."""
-        model = Mock(spec=BaseModel)
+        model = Mock()
         model.check_is_fitted.return_value = None
         model.predict.return_value = np.array([1, 2, 3])
         
@@ -214,9 +214,9 @@ class TestPredictor:
         # Get predictions
         predictions = predictor.predict(X)
         
-        # Create temporary file
-        with tempfile.NamedTemporaryFile(delete=False) as tmp:
-            temp_path = tmp.name
+        # Create a temporary file path with a .npy extension
+        temp_dir = tempfile.mkdtemp()
+        temp_path = os.path.join(temp_dir, "test_predictions.npy")
             
         try:
             # Save predictions
@@ -232,10 +232,12 @@ class TestPredictor:
             # Clean up
             if os.path.exists(temp_path):
                 os.remove(temp_path)
+            if os.path.exists(temp_dir):
+                os.rmdir(temp_dir)
                 
     def test_save_predictions_with_probabilities(self):
         """Test saving predictions with probabilities."""
-        model = Mock(spec=BaseModel)
+        model = Mock()
         model.check_is_fitted.return_value = None
         model.predict.return_value = np.array([1, 0, 1])
         model.predict_proba.return_value = np.array([
@@ -250,32 +252,34 @@ class TestPredictor:
         # Get predictions with probabilities
         result = predictor.predict(X, return_probabilities=True)
         
-        # Create temporary file
-        with tempfile.NamedTemporaryFile(delete=False) as tmp:
-            temp_path = tmp.name
+        # Create a temporary file path with a .npz extension
+        temp_dir = tempfile.mkdtemp()
+        temp_path = os.path.join(temp_dir, "test_predictions.npz")
             
         try:
             # Save predictions
             predictor.save_predictions(result, temp_path)
+            
             assert os.path.exists(temp_path)
             
             # Load predictions
             loaded_result = predictor.load_predictions(temp_path)
             
             # Check loaded predictions
-            if isinstance(result, dict) and isinstance(loaded_result, dict):
-                np.testing.assert_array_equal(result["predictions"], loaded_result["predictions"])
-                np.testing.assert_array_equal(result["probabilities"], loaded_result["probabilities"])
-            else:
-                np.testing.assert_array_equal(result, loaded_result)
+            assert isinstance(result, dict)
+            assert isinstance(loaded_result, dict)
+            np.testing.assert_array_equal(result["predictions"], loaded_result["predictions"])
+            np.testing.assert_array_equal(result["probabilities"], loaded_result["probabilities"])
         finally:
             # Clean up
             if os.path.exists(temp_path):
                 os.remove(temp_path)
+            if os.path.exists(temp_dir):
+                os.rmdir(temp_dir)
                 
     def test_load_predictions_nonexistent_file(self):
         """Test that loading from a nonexistent file raises FileNotFoundError."""
-        model = Mock(spec=BaseModel)
+        model = Mock()
         model.check_is_fitted.return_value = None
         
         predictor = Predictor(model)
