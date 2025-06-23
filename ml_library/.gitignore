@@ -60,3 +60,5 @@ venv.bak/
 
 # OS specific
 .DS_Store
+
+prompt.md
